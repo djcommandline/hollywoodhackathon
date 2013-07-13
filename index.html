@@ -31,6 +31,46 @@
         <link rel="stylesheet" href="css/ie.css">
         <![endif]-->
 
+        <!-- TOK BOX -->
+        <script type="text/javascript" src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js"></script>
+
+        <script type="text/javascript">
+            var apiKey = '35093672';
+            var sessionId = '1_MX4zNTA5MzY3Mn4xMjcuMC4wLjF-U2F0IEp1bCAxMyAxMjozMTowOSBQRFQgMjAxM34wLjM0NDUxOTYyfg';
+            var token = 'T1==cGFydG5lcl9pZD0zNTA5MzY3MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1iNzI0MmMzZWFkZTkwNjk4Zjg5YjYwZWY2MThiOGNlMjdlZGQxY2JhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDR6TlRBNU16WTNNbjR4TWpjdU1DNHdMakYtVTJGMElFcDFiQ0F4TXlBeE1qb3pNVG93T1NCUVJGUWdNakF4TTM0d0xqTTBORFV4T1RZeWZnJmNyZWF0ZV90aW1lPTEzNzM3NDM5MTEmbm9uY2U9MC4yODMyMTQ1ODEyMjQ1NjE4JmV4cGlyZV90aW1lPTEzNzM4MzAzMTImY29ubmVjdGlvbl9kYXRhPQ==';
+            var session = TB.initSession(sessionId);
+            var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
+
+            session.addEventListener('sessionConnected', function(e){
+            session.publish( publisher );
+                for (var i = 0; i < e.streams.length; i++) {
+                // Make sure we don't subscribe to ourself
+                    if (streams[i].connection.connectionId == session.connection.connectionId) {
+                      return;
+                    }
+                    session.subscribe(e.streams[i]);
+                }
+            });
+
+            session.addEventListener('streamCreated', function(e){
+                for (var i = 0; i < e.streams.length; i++) {
+                    // Make sure we don't subscribe to ourself
+                    if (streams[i].connection.connectionId == session.connection.connectionId) {
+                        return;
+                    }
+                    // Create the div to put the subscriber element in to
+                    var div = document.createElement('div');
+                    div.setAttribute('id', 'stream' + streams[i].streamId);
+                    document.body.appendChild(div);
+                    session.subscribe(streams[i], div.id);
+                }
+            });
+
+            session.connect(apiKey, token);
+
+
+        </script>
+
     </head>
    
     <body ng-app>
@@ -59,6 +99,9 @@
                             <div class="m-25 bg-white o-hidden">
 
                                 <!-- PUT YOUR SHIT HERE -->
+
+                                <div id="myPublisherDiv"></div>
+
 
                             </div>
                         </div>
