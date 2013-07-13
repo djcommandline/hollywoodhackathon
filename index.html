@@ -159,6 +159,16 @@
                 width: 100%;
             }
 
+            .streamcontainer {
+                border: 1px solid red;
+                width: 50%;
+            }
+
+            .streamcontainer > div {
+                width: 100% !important;
+                height: 500px !important;
+            }
+
         </style>
 
     </head>
@@ -191,8 +201,10 @@
                                 <!-- PUT YOUR SHIT HERE -->
 
                                 <canvas></canvas>
-                                <div id="myPublisherDiv"></div>
 
+                                <div class="streamcontainer">                                
+                                    <div id="myPublisherDiv"></div>
+                                </div>
 
                             </div>
                         </div>
