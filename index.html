@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Front End Patterns</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+
+        <!-- modernizr -->
+        <script src="/assets/js/modernizr.js"></script>
+
+        <!-- font awesome -->    
+        <link rel="stylesheet" href="./assets/css/font-awesome.css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+        <![endif]-->
+
+        <!-- fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+
+        <!-- css -->
+        <link rel="stylesheet" href="./assets/css/style.css">
+
+        <!--[if (lt IE 9) & (!IEMobile)]>
+        <link rel="stylesheet" href="css/ie.css">
+        <![endif]-->
+
+    </head>
+   
+    <body ng-app>
+
+        <div id="outer-wrap">
+        <div id="inner-wrap">
+
+
+            <!-- LEFT LOGO -->
+            <header id="header" class="left-layout" role="banner">
+                <div class="block cf">                    
+                    <a class="nav-btn" id="nav-open-btn"><i class="icon-reorder"></i></a>
+                    <h1 class="title text-left"><span>SHIZZANARY</span></h1>
+                </div>
+            </header>
+
+
+
+            <!-- THE MAIN PORTION OF THE PAGE -->
+            <div id="main" role="main" class="bg-light">
+
+
+                <div class="block button-examples">
+                    <div class="c1 rel-center p25">
+                        <div class="box padded">
+                            <div class="m-25 bg-white o-hidden">
+
+                                <!-- PUT YOUR SHIT HERE -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+            <footer id="footer" role="contentinfo" class="bg-light">
+                <div class="block">
+                    <div class="c1 rel-center">
+                        <div class="box padded">
+                           <div class="m-15"> 
+                                This is the footet text
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!--/#inner-wrap-->
+        </div>
+        <!--/#outer-wrap-->
+
+
+        <!-- END OF PAGE SCRIPT --> 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.9.0.min.js"><\/script>')</script>
+
+        <!-- Angular -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        
+        <!-- ADDITIONAL SCRIPTS --> 
+        <script src="js/x-plugins.js"></script>
+
+        <!-- ADDITIONAL PAGE SCRIPTS --> 
+        <script type="text/javascript">            
+            jQuery(document).ready(function($) {
+                $('.input-wrap input').focus(function(){
+                    $(this).parent().addClass('focused');
+                    console.log('hello');
+                });
+                $('.input-wrap input').focusout(function(){
+                    $(this).parent().removeClass('focused');
+                });
+            });
+        </script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script type="text/javascript">
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+
+
+    
+    </body>
+
+
+

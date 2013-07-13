@@ -1,0 +1,81 @@
+/*
+    -----------
+    SANS SERIF HELPER CLASSES
+    -----------
+*/
+.san-serif {
+    
+}
+.san-serif-light {
+    font-family: $san-serif-light;
+}
+.san-serif-light {
+    font-family: $san-serif-italic;
+}
+.san-serif-ultralight {
+    font-family: $san-serif-ultralight;
+}
+.san-serif-medium {
+    font-family: $san-serif-medium;
+}
+.san-serif-regular {
+    font-family: $san-serif-regular;
+}
+.san-serif-bold {
+    font-family: $san-serif-bold;
+}
+.san-serif-bold-italic {
+    font-family: $san-serif-bold-italic;
+}
+.san-serif-bold-condensed {
+    font-family: $san-serif-bold-condensed;
+}
+
+/*
+    -----------
+    SERIF HELPER CLASSES
+    -----------
+*/
+.serif {
+    font-family: $serif;
+}
+.serif-italic {
+    font-family: $serif-italic;
+}
+.serif-light {
+    font-family: $serif-light;
+}
+.serif-ultralight {
+    font-family: $serif-ultralight;
+}
+.serif-medium {
+    font-family: $serif-medium;
+}
+.serif-regular {
+    font-family: $serif-regular;
+}
+.serif-bold {
+    font-family: $serif-bold;
+}
+.serif-bold-italic {
+    font-family: $serif-bold-italic;
+}
+.serif-bold-condensed {
+    font-family: $serif-bold-condensed;
+}
+
+
+/*
+    -----------
+    FONT SIZE HELPER CLASSES
+    -----------
+*/
+$num_step : 10;
+$spacing : 1em;
+$spacinglabel : 1;
+
+@for $i from 0 through $num_step {
+    .font-#{$i * $spacinglabel}em { 
+        font-size: $spacing * $i !important; 
+    }
+}

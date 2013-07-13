@@ -1,0 +1,17 @@
+{
+  "fonts": [
+    "fontcustom_a26e5b584d3e158faea11262f704af17.ttf",
+    "fontcustom_a26e5b584d3e158faea11262f704af17.woff",
+    "fontcustom_a26e5b584d3e158faea11262f704af17.eot",
+    "fontcustom_a26e5b584d3e158faea11262f704af17.svg"
+  ],
+  "templates": [
+    "fontcustom.css",
+    "fontcustom-preview.html"
+  ],
+  "file_name": "fontcustom_a26e5b584d3e158faea11262f704af17",
+  "glyphs": [
+    "cup",
+    "diamond"
+  ]
+}
