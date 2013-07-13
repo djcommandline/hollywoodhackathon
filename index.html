@@ -38,8 +38,9 @@
         <script src="socket.io/socket.io.js"></script>
 
         <!-- TOK BOX -->
-        <script type="text/javascript" src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js"></script>
         <script type="text/javascript" src="opentok.js"></script>
+
+        <script type="text/javascript" src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js"></script>
 
         <script type="text/javascript">
             
@@ -67,7 +68,7 @@
             session.addEventListener('streamCreated', function(e){
                 for (var i = 0; i < e.streams.length; i++) {
                     // Make sure we don't subscribe to ourself
-                    if (streams[i].connection.connectionId == session.connection.connectionId) {
+                    if (e.streams[i].connection.connectionId == session.connection.connectionId) {
                         return;
                     }
                     // Create the div to put the subscriber element in to
