@@ -1,6 +1,6 @@
 var OpenTok = require('opentok');
-var apiKey = '35091912';    // Replace with your API key  
-var secret = '9b11b88535654603e8b21ca350ca60d5c165f029';  // Replace with your API secret  
+var apiKey = '25925352';    // Replace with your API key  
+var secret = 'b10360ef840cd6659cd5d14d184f629926b55d30';  // Replace with your API secret  
 var opentok = new OpenTok.OpenTokSDK(apiKey, secret);
 
 var location = '127.0.0.1'; // use an IP of 'localhost'
