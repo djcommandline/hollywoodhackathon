@@ -1,0 +1,16 @@
+/*
+    ===================
+    PROPERTIES :: WIDTH
+    ===================
+*/
+$unit : 1%;
+
+@each $widthclass in 100, 98, 90, 80, 75, 60, 50, 40, 33, 25, 20, 10, 0 {
+  .w#{$widthclass}, .cta.w#{$widthclass} {
+    width: #{$widthclass * $unit} !important;
+  }
+}
+
+.wauto {
+	width: auto;
+}

@@ -1,0 +1,90 @@
+/*
+    ----------------------
+    BACKGROUNDS
+    ----------------------
+*/
+.bg-white {
+    color: inverse($bgWhite);
+    background: $bgWhite;
+}
+.bg-white-gradient {
+     
+}
+.bg-grey {
+    background: $bgGrey;
+}
+.bg-light {
+    background: $bgLight;
+    color: darken($bgLight, 80%);
+}
+.bg-light-gradient {
+    color: #c33133;
+    background-color: #f0f0f0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#c0c0c0)); /* Chrome, Safari 4+ */
+    background-image: -webkit-linear-gradient(top, #f0f0f0, #c0c0c0); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+    background-image:    -moz-linear-gradient(top, #f0f0f0, #c0c0c0); /* Firefox 3.6-15 */
+    background-image:      -o-linear-gradient(top, #f0f0f0, #c0c0c0); /* Opera 11.10-12.00 */
+    background-image:         linear-gradient(to bottom, #f0f0f0, #c0c0c0); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+}
+.bg-solid {
+    background: #15b4d3;
+    color: #fff;
+}
+.bg-solid-gradient {
+    background-color: #c33133;
+    color: #c0c0c0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#c33133), to(#4d274f)); /* Chrome, Safari 4+ */
+    background-image: -webkit-linear-gradient(top, #c33133, #4d274f); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+    background-image:    -moz-linear-gradient(top, #c33133, #4d274f); /* Firefox 3.6-15 */
+    background-image:      -o-linear-gradient(top, #c33133, #4d274f); /* Opera 11.10-12.00 */
+    background-image:         linear-gradient(to bottom, #c33133, #4d274f); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+}
+.bg-dark {
+    color: #fff;
+    background: #333333;
+}
+.bg-dark-gradient {
+    color: #fff;            
+    background-color: #333333;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#111111)); /* Chrome, Safari 4+ */
+    background-image: -webkit-linear-gradient(top, #333333, #111111); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+    background-image:    -moz-linear-gradient(top, #333333, #111111); /* Firefox 3.6-15 */
+    background-image:      -o-linear-gradient(top, #333333, #111111); /* Opera 11.10-12.00 */
+    background-image:         linear-gradient(to bottom, #333333, #111111); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+}
+.bg-primary {
+    background-color: $primaryColor;
+    color: lighten($primaryColor, 35%);
+}
+.bg-secondary {
+    background-color: $secondaryColor;
+    color: lighten($secondaryColor, 35%);
+}
+.bg-warning {
+    background-color: $warningColor;
+    color: lighten($warningColor, 35%);
+}
+.bg-danger {
+    background-color: $dangerColor;
+    color: lighten($dangerColor, 35%);
+}
+.bg-info {
+    background-color: $infoColor;
+    color: darken($infoColor, 35%);
+}
+.bg-disabled {
+    background-color: $disabledColor;
+    color: darken($disabledColor, 35%);
+}
+.bg-default {
+    background-color: $defaultColor;
+    color: darken($defaultColor, 35%);
+}
+.bg-success {
+    background-color: $successColor;
+    color: darken($successColor, 35%);
+}
+.bg-inverse {
+    background-color: $inverseColor;
+    color: darken($inverseColor, 35%);
+}

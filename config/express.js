@@ -14,8 +14,7 @@ module.exports = function (app, express, config) {
 		
 		
 		// Static Files
-		app.use('/assets', express.static(config.root + '/assets'));
-		app.use(express.static(config.root + '/'));
+		app.use(express.static(config.root + '/public'));
 		// app.use("/styles", express.static(__dirname + '/styles'));
 
 		// Routing
