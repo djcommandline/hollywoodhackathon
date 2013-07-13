@@ -78,7 +78,6 @@
             });
 
             session.connect(apiKey, token);
-			document.getElementById("share-link").innerHTML = "<a href='http://drizzlefrizzle.com:3000?sessionId="+sessionId+"&token="+token+"'>Get Link</a>";
 			
 
 
@@ -102,6 +101,8 @@
             /////////////
 
             $(document).ready(function () {
+            	$("#share-link").html("<a href='http://drizzlefrizzle.com:3000?sessionId="+sessionId+"&token="+token+"'>Get Link</a>");
+
                 App.init = function() {
                     App.canvas = document.getElementsByTagName('canvas');
                     App.canvas.height = 400;
