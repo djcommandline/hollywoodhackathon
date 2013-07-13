@@ -17,13 +17,16 @@ var	https = require('https'),
 
 // Environment
 	env = 'development',
-	port = 3000,
+	port = 3001,
 	config = require('./config/config')(path, port)[env],
 
 // Express
 	express = require('express'),
 	app = express(),
-	server = http.createServer(app);
+	server = http.createServer(app),
+
+// SocketIO	
+	io = require('socket.io').listen(server);
 
 
 ///////////////////
@@ -35,6 +38,29 @@ require('./config/express')(app, express, config);
 
 // Routing
 require('./config/routes')(app);
+
+
+///////////////
+// Socket IO //
+///////////////
+
+io.sockets.on('connection', function(socket) {
+  	console.log('Socket Connected!');
+
+  	socket.on('test', function(data) {
+  		console.log(data);
+  	});
+  	
+  	socket.on('drawClick', function(data) {
+    	console.log(data);
+
+    	/* socket.broadcast.emit('draw', {
+      		x: data.x,
+      		y: data.y,
+      		type: data.type
+    	}); */
+  	});
+});
 
 
 //////////////////
