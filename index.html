@@ -31,10 +31,21 @@
         <link rel="stylesheet" href="css/ie.css">
         <![endif]-->
 
+        <!-- jQuery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+        <!-- Socket IO -->
+        <script src="socket.io/socket.io.js"></script>
+
         <!-- TOK BOX -->
         <script type="text/javascript" src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js"></script>
 
         <script type="text/javascript">
+            
+            ///////////
+            // Video //
+            ///////////
+
             var apiKey = '35093672';
             var sessionId = '1_MX4zNTA5MzY3Mn4xMjcuMC4wLjF-U2F0IEp1bCAxMyAxMjozMTowOSBQRFQgMjAxM34wLjM0NDUxOTYyfg';
             var token = 'T1==cGFydG5lcl9pZD0zNTA5MzY3MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1iNzI0MmMzZWFkZTkwNjk4Zjg5YjYwZWY2MThiOGNlMjdlZGQxY2JhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDR6TlRBNU16WTNNbjR4TWpjdU1DNHdMakYtVTJGMElFcDFiQ0F4TXlBeE1qb3pNVG93T1NCUVJGUWdNakF4TTM0d0xqTTBORFV4T1RZeWZnJmNyZWF0ZV90aW1lPTEzNzM3NDM5MTEmbm9uY2U9MC4yODMyMTQ1ODEyMjQ1NjE4JmV4cGlyZV90aW1lPTEzNzM4MzAzMTImY29ubmVjdGlvbl9kYXRhPQ==';
@@ -69,7 +80,83 @@
             session.connect(apiKey, token);
 
 
+            /////////////
+            // Sockets //
+            /////////////
+
+            var App = {};
+
+            App.socket = io.connect('http://localhost:3001');
+            console.log(io);
+
+            App.socket.emit('test', { data: 'data' });
+
+            App.socket.on('draw', function(data) {
+                return App.draw(data.x, data.y, data.type);
+            });
+
+            /////////////
+            // Drawing //
+            /////////////
+
+            $(document).ready(function () {
+                App.init = function() {
+                    App.canvas = document.getElementsByTagName('canvas');
+                    App.canvas.height = 400;
+                    App.canvas.width = 800;
+                    
+                    App.ctx = App.canvas.getContext("2d");
+                    App.ctx.fillStyle = "solid";
+                    App.ctx.strokeStyle = "#bada55";
+                    App.ctx.lineWidth = 5;
+                    App.ctx.lineCap = "round";
+                    
+                    App.draw = function(x, y, type) {
+                        if (type === "dragstart") {
+                            App.ctx.beginPath();
+                            return App.ctx.moveTo(x, y);
+                        } else if (type === "drag") {
+                            App.ctx.lineTo(x, y);
+                            return App.ctx.stroke();
+                        } else {
+                            return App.ctx.closePath();
+                        }
+                    };
+                };
+
+            
+                // Draw Event
+
+                $('canvas').on('mouseover drag dragstart dragend', function(e) {
+                    var offset, type, x, y;
+                    
+                    type = e.handleObj.type;
+                    offset = $(this).offset();
+                    e.offsetX = e.layerX - offset.left;
+                    e.offsetY = e.layerY - offset.top;
+                    x = e.offsetX;
+                    y = e.offsetY;
+                   
+                    App.draw(x, y, type);
+                    
+                    App.socket.emit('drawClick', {
+                        x: x,
+                        y: y,
+                        type: type
+                    });
+                });
+            });
+
         </script>
+
+        <style type="text/css">
+            canvas {
+                position: fixed;
+                height: 100%;
+                width: 100%;
+            }
+
+        </style>
 
     </head>
    
@@ -100,6 +187,7 @@
 
                                 <!-- PUT YOUR SHIT HERE -->
 
+                                <canvas></canvas>
                                 <div id="myPublisherDiv"></div>
 
 
