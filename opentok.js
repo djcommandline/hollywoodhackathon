@@ -18,4 +18,4 @@ if (typeof query.sessionId  === "undefined" ){
 else
 	var sessionId = query.sessionId;
 
-var token = opentok.generateToken({session_id:session_id, role:OpenTok.RoleConstants.PUBLISHER, connection_data:""});
+var token = opentok.generateToken({session_id:sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:""});
