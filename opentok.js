@@ -4,9 +4,18 @@ var secret = '9b11b88535654603e8b21ca350ca60d5c165f029';  // Replace with your A
 var opentok = new OpenTok.OpenTokSDK(apiKey, secret);
 
 var location = '127.0.0.1'; // use an IP of 'localhost'
-var sessionId = '';
-opentok.createSession(location, {'p2p.preference':'enabled'}, function(result){
-  sessionId = result;
-});
 
-var token = opentok.generateToken({session_id:session_id, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
+
+var url = require('url');
+var url_parts = url.parse(request.url, true);
+var query = url_parts.query;
+if (typeof query.sessionId  === "undefined" ){
+	var sessionId = '';
+	opentok.createSession(location, {'p2p.preference':'disabled'}, function(result){
+ 		sessionId = result;
+	});
+}
+else
+	var sessionId = query.sessionId;
+
+var token = opentok.generateToken({session_id:session_id, role:OpenTok.RoleConstants.PUBLISHER, connection_data:""});
