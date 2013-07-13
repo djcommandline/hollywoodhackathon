@@ -66,6 +66,8 @@
             });
 
             session.connect(apiKey, token);
+			document.getElementById("share-link").innerHTML = "<a href='http://drizzlefrizzle.com:3000?sessionId="+sessionId+"&token="+token+"'>Get Link</a>";
+			
 
 
         </script>
@@ -117,7 +119,7 @@
                     <div class="c1 rel-center">
                         <div class="box padded">
                            <div class="m-15"> 
-                                This is the footet text
+                                <div id="share-link"></div>
                             </div>
                         </div>
                     </div>
