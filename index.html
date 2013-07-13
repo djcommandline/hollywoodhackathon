@@ -56,7 +56,7 @@
             session.publish( publisher );
                 for (var i = 0; i < e.streams.length; i++) {
                 // Make sure we don't subscribe to ourself
-                    if (e.streams[i].connection.connectionId == session.connection.connectionId) {
+                    if (streams[i].connection.connectionId == session.connection.connectionId) {
                       return;
                     }
                     session.subscribe(e.streams[i]);
@@ -66,14 +66,14 @@
             session.addEventListener('streamCreated', function(e){
                 for (var i = 0; i < e.streams.length; i++) {
                     // Make sure we don't subscribe to ourself
-                    if (e.streams[i].connection.connectionId == session.connection.connectionId) {
+                    if (streams[i].connection.connectionId == session.connection.connectionId) {
                         return;
                     }
                     // Create the div to put the subscriber element in to
                     var div = document.createElement('div');
-                    div.setAttribute('id', 'stream' + e.streams[i].streamId);
+                    div.setAttribute('id', 'stream' + streams[i].streamId);
                     document.body.appendChild(div);
-                    session.subscribe(e.streams[i], div.id);
+                    session.subscribe(streams[i], div.id);
                 }
             });
 
