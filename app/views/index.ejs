@@ -288,7 +288,7 @@
                 $('#chatBox').append("<h4>" + $("#chat-message").val() + "</h4>");
                 console.log("SEND CHAT: " + $("#chat-message").val());
                 App.socket.emit('chat', {message: $("#chat-message").val(), sessionId: $("#sessionId").val() });
-                $('#chat-message').html("");
+                $('#chat-message').attr('value','');
             }
 
             
@@ -463,7 +463,7 @@
                     <!-- SHARE LAYER -->
                     <div class="sharewrap">
                         <form action= "" method= "" >
-                            <input type="text" name="chat" style="80%" id="chat-message" placeholder='Type in your guess here...' />
+                            <input type="text" name="chat" style="80%" id="chat-message" value='' placeholder='Type in your guess here...' />
                             <button id="chat" type="button" value="Submit" onclick="sendChat()" style="10%" ><i class="icon-envelope-alt"></i></button>
                         </form> 
                         <div id="share-link">
