@@ -65,6 +65,10 @@ io.sockets.on('connection', function(socket) {
   	socket.on('chat', function(data) {
   		socket.broadcast.emit('chat', data)
   	});
+
+  	socket.on('win', function(data) {
+  		socket.broadcast.emit('win', data)
+  	});
   	
   	socket.on('drawClick', function(data) {
     	console.log("DRAW CLICK - : " + data);
