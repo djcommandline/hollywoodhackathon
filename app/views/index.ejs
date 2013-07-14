@@ -187,13 +187,50 @@
             }
 
             .streamcontainer {
-                border: 1px solid red;
                 width: 50%;
             }
 
             .streamcontainer > div {
                 width: 100% !important;
-                height: 500px !important;
+                height: 300px !important;
+            }
+
+            /* ACTION LAYER */
+            .searchbar {
+                padding: 10px;
+                background: #f0f0f0;
+            }
+            .searchbar input {
+                border: 1px solid #d0d0d0;
+            }
+            #searchitem {
+                width: 90%;
+            }
+            #submitbutton {
+            }
+
+
+
+            /* PARTICIPANT LAYER */
+            .playersbar {
+                width: 100%;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                height: 200px;
+            }
+
+            .playerinfo {
+                text-align: center;
+            }
+
+            .playerview {
+                width: 25%;
+                float: left;
+                height: 200px;
+                background: #f0f0f0;
+                border: 1px solid black;
+                margin-left: -2px;
             }
 
         </style>
@@ -211,6 +248,11 @@
                 <div class="block cf">                    
                     <a class="nav-btn" id="nav-open-btn"><i class="icon-reorder"></i></a>
                     <h1 class="title text-left"><span>Fo' Drizzle Frizzle</span></h1>
+
+                    <div class="shareit set-right">
+                        <div id="share-link"></div>
+                    </div>
+
                 </div>
             </header>
 
@@ -225,13 +267,63 @@
                         <div class="box padded">
                             <div class="m-25 bg-white o-hidden">
 
-                                <!-- PUT YOUR SHIT HERE -->
-
-                                <div class="streamcontainer">                                
-                                    <div id="myPublisherDiv"></div>
+                                <!-- ACTION LAYER -->
+                                <div class="searchwrap">
+                                    <div class="searchbar">
+                                        <label for="searchitem">SEARCH</label>
+                                        <form action="">
+                                            <input type="text" id="searchitem" name="searchitem" />
+                                            <button id="submitbutton" type="submit">-></button>
+                                        </form>
+                                    </div>
+                                    <div class="searchresult">
+                                        SEARCH RESULT DISPLAYED HERE <br>
+                                        <img src="http://placehold.it/100x100" alt="">
+                                    </div>
                                 </div>
 
-                                 <canvas id='canvas'></canvas>
+
+                                <!-- VIDEO DISPLAY LAYER -->
+                                <div class="videodisplay">
+                                    CURRENT PARTIIPANT BEING DRAWN ON HERE
+                                    <div class="streamcontainer">
+
+                                        <div class="streamcontainer">                                
+                                            <div id="myPublisherDiv"></div>
+                                        </div>
+
+                                        <canvas id='canvas'></canvas>
+                                    </div>                                    
+                                </div>
+
+                                
+                                <!-- PARTICIPANT LAYER -->
+                                <div class="playersbar">
+                                    <div class="box cf">
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Drizzle Maker</div>
+                                            </div>
+                                        </div>
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Drizzler</div>
+                                            </div>
+                                        </div>
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Frizzler</div>
+                                            </div>
+                                        </div>
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Frizzler</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -248,7 +340,6 @@
                     <div class="c1 rel-center">
                         <div class="box padded">
                            <div class="m-15"> 
-                                <div id="share-link"></div>
                             </div>
                         </div>
                     </div>
