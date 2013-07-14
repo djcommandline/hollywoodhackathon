@@ -2122,6 +2122,19 @@ body {
   width: 100% !important;
   height: 600px; }
 
+/* SEARCH RESULTS */
+.searchresult {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46%;
+  padding: 2%;
+  background: rgba(0, 0, 0, 0.5); }
+
+.searchresult img {
+  width: 100%;
+  opacity: .5; }
+
 /* ACTION LAYER */
 .searchbar, .sharewrap {
   padding: 10px;
