@@ -19,6 +19,7 @@
         <![endif]-->
 
         <!-- fonts -->
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
 
@@ -109,22 +110,35 @@
             // Drawing //
             /////////////
 
+            var brush = {
+                            fillStyle : "solid",
+                            strokeStyle : "#e51aca",
+                            lineWidth : 5,
+                            lineCap : "round"
+                        };
+
             App.init = function() {
                 App.canvas = document.getElementById('canvas');
                 App.canvas.height = $('.streamcontainer').height();
                 App.canvas.width = $('.streamcontainer').width();
+
+                //var style = 
                 
                 App.ctx = App.canvas.getContext("2d");
-                App.ctx.fillStyle = "solid";
-                App.ctx.strokeStyle = "#e51aca";
-                App.ctx.lineWidth = 5;
-                App.ctx.lineCap = "round";
+                App.ctx.fillStyle = brush.fillStyle;
+                App.ctx.strokeStyle = brush.strokeStyle;
+                App.ctx.lineWidth = brush.lineWidth;
+                App.ctx.lineCap = brush.lineCap;
+
+                console.log("APP!");
+                console.dir(App);
+
                 
                 return App.draw = function(x, y, style, type) {
                     console.dir(style);
 
-                    App.ctx.strokeStyle = style.strokeStyle;
-                    App.ctx.lineWidth = style.lineWidth;
+                    //pp.ctx.strokeStyle = style.strokeStyle;
+                    //App.ctx.lineWidth = style.lineWidth;
 
                     if (type === "dragstart") {
                         App.ctx.beginPath();
@@ -141,6 +155,8 @@
             $(document).ready(function () {
 
                 App.init();
+                //console.log("APP");
+                //console.dir(App);
             
                 // Draw Event
 
@@ -155,10 +171,11 @@
                     y = e.offsetY;
 
                     var lineStyle = {    
-                                        strokeStyle: App.ctx.strokeStyle,
-                                        stylelineWidth: App.ctx.lineWidth
+                                        strokeStyle: brush.strokeStyle,
+                                        stylelineWidth: brush.lineWidth
                                     };
-                   
+                    
+                    console.dir(lineStyle);
                     App.draw(x, y, lineStyle, type);
                     
                     App.socket.emit('drawClick', {
@@ -211,6 +228,10 @@
                 // resize the canvas
                 App.canvas.width = newWidth;
                 App.canvas.height = newHeight;
+                App.ctx.fillStyle = brush.fillStyle;
+                App.ctx.strokeStyle = brush.strokeStyle;
+                App.ctx.lineWidth = brush.lineWidth;
+                App.ctx.lineCap = brush.lineCap;
 
                 // scale and redraw the canvas content
                 var img = new Image();
@@ -270,13 +291,13 @@
                         DRIZZLE FRIZZLE
                     </div>
 
-                    <!-- ACTION LAYER -->
+                    <!-- SEARCH LAYER -->
                     <div class="actions">
                         <div class="searchwrap">
                             <div class="searchbar">
                                 <form action="">
-                                    <input placeholder="SEARCH DRAWING TARGET" type="text" id="searchitem" name="searchitem" />
-                                    <button id="submitbutton" type="submit" onclick="search()">-></button>
+                                    <input placeholder="SEARCH PICTURE" type="text" id="searchitem" name="searchitem" />
+                                    <button id="submitbutton" type="submit"><i class="icon-picture"></i></button>
                                 </form>
                             </div>
                             <div class="searchresult">
@@ -285,14 +306,7 @@
                             </div>
                         </div>
 
-                        <!-- SHARE -->
-                        <div id="share-link">
-                            <form action="" method="POST" >
-                                <input type="text" name="email" id="email">
-                                <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
-                                <input type="button" value="Submit" onClick="sendEmail()">
-                            </form>
-                        </div>
+
                     </div>
 
 
@@ -322,26 +336,24 @@
                         </div>
                     </div>
 
+                    
+                    <!-- SHARE LAYER -->
+                    <div class="sharewrap">
+                        <div id="share-link">
+                            <form action="" method="POST" >
+                                <input placeholder="INVITE FRIENDS" type="text" name="email" id="email" style="width: 89%;">
+                                <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
+                                <button id="sharebutton" type="button" value="Submit" onClick="sendEmail()" style="10%"><i class="icon-envelope-alt"></i></button>
+                            </form>
+                        </div>                        
+                    </div>
+
+
+
                 </div>
 
 
             </div>
-
-
-
-            <!-- FOOTER -->
-            <footer id="footer" role="contentinfo" class="bg-light">
-                <div class="block">
-                    <div class="c1 rel-center">
-                        <div class="box padded">
-                           <div class="m-15"> 
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
 
         </div>
         <!--/#inner-wrap-->

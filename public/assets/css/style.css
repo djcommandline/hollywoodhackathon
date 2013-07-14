@@ -1477,7 +1477,7 @@ form input {
   margin: 0px;
   background: #f0f0f0;
   padding: .25em 0;
-  border: 1px solid #c0c0c0; }
+  border: 0px solid #c0c0c0; }
 
 .input-wrap.focused {
   box-shadow: inset 0 0 5px #7e5480; }
@@ -2098,7 +2098,14 @@ body {
   line-height: 1em;
   text-align: center;
   font-weight: normal;
-  color: white; }
+  color: #fff; }
+
+#sharebutton, #submitbutton {
+  color: #fff;
+  border: 0px;
+  padding: 10px 0;
+  background: #23dc9e;
+  width: 10%; }
 
 .videodisplay {
   margin: 0 auto; }
@@ -2118,15 +2125,18 @@ body {
   height: 680px !important; }
 
 /* ACTION LAYER */
-.searchbar {
+.searchbar, .sharewrap {
   padding: 10px;
   background: #f0f0f0; }
 
-.searchbar input {
-  border: 1px solid #d0d0d0; }
+.searchbar input, .sharewrap input {
+  border: 0px solid #d0d0d0;
+  color: #d0d0d0;
+  font-size: 22px;
+  color: #23dc9e; }
 
 #searchitem {
-  width: 90%; }
+  width: 89%; }
 
 .OT_mirrored {
   float: left; }
