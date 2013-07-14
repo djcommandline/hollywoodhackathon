@@ -36,9 +36,10 @@ module.exports = function (app, express, config) {
 		
 		// Handle Errors
 		app.use(function(err, req, res, next){
+			console.log(err);
 			console.log(err.stack);
 			res.status(500);
-			res.send('500 error');
+			res.send('500 error %s', err);
 		});
 
 
