@@ -7,6 +7,13 @@ module.exports = function (app, config, OpenTok, routes) {
 		var secret = 'b10360ef840cd6659cd5d14d184f629926b55d30';  // Replace with your API secret  
 		var opentok = new OpenTok.OpenTokSDK(apiKey, secret);
 	
+	
+	app.get('/image', function(req,res) {
+		var image = req.query.file.replace(" ","_");
+		console.log(image);
+		res.send("assets/images/"+image+".jpg");
+	});
+
 	app.get('/', function (req, res) {	
 
 		opentok.createSession(config.root, {'p2p.preference':'disabled'}, function (result) {
@@ -54,11 +61,6 @@ module.exports = function (app, config, OpenTok, routes) {
 		
 	});
 	
-	app.get('/image', function(req,res) {
-		var image = req.query.file.replace("+","_");
-		console.log("image");
-		res.send("assets/images/"+image+".jpg");
-	});
 
 
 
