@@ -2168,12 +2168,12 @@ body {
   color: #9db748; }
 
 .playerview {
-  width: 22.5%;
-  float: left;
-  height: 200px;
-  background: #f0f0f0;
-  margin-left: 2%;
-  margin-top: 2%; }
+  width: 22.5% !important;
+  float: left !important;
+  height: 200px !important;
+  background: #f0f0f0 !important;
+  margin-left: 2% !important;
+  margin-top: 2% !important; }
 
 #brushPicker {
   cursor: pointer;
