@@ -54,7 +54,7 @@
             var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
 			var nop = 1;
 			var currentPlayer = 1;
-			$("#player" + currentPlayer).addclass("active");
+			$("#player" + currentPlayer).addClass("active");
             session.addEventListener('sessionConnected', function(e){
             session.publish( publisher );
                 for (var i = 0; i < e.streams.length; i++) {
@@ -216,7 +216,7 @@
 			
 			function getTurn(){
 				currentPlayer++;
-				$("#player" + currentPlayer).addclass("active");
+				$("#player" + currentPlayer).addClass("active");
 			}
 				
 
