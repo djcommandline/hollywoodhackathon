@@ -2,7 +2,7 @@
 // Routes //
 ////////////
 
-module.exports = function (app, config, OpenTok) {
+module.exports = function (app, config, OpenTok, routes) {
 		var apiKey = '25925352';    // Replace with your API key  
 		var secret = 'b10360ef840cd6659cd5d14d184f629926b55d30';  // Replace with your API secret  
 		var opentok = new OpenTok.OpenTokSDK(apiKey, secret);

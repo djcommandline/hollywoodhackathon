@@ -15,6 +15,7 @@ module.exports = function (path, port) {
 		},
 		staging: {
 			root: rootPath,
+			host: 'http://drizzlefrizzle.com:' + port,
 			app: {
 				name: 'Stage - Drizzle Frizzle'
 			},

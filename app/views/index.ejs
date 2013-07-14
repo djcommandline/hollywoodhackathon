@@ -88,13 +88,18 @@
 
             var App = {};
 
-            App.socket = io.connect('http://drizzlefrizzle.com:3001');
+            App.socket = io.connect('http://www.drizzlefrizzle.com:3001');
 
             App.socket.emit('test', { data: 'data' });
 
+            App.socket.on('new user', function(data) {
+                console.log(data.data);
+            });
+
+
             App.socket.on('draw', function(data) {
-                console.log('Draw: ' + data);
-                return App.draw(data.x, data.y, data.type);
+                console.log('Draw');
+                return App.draw(data.x, data.y, data.style, data.type);
             });
 
             /////////////
@@ -102,7 +107,6 @@
             /////////////
 
             App.init = function() {
-
                 App.canvas = document.getElementById('canvas');
                 App.canvas.height = 318;
                 App.canvas.width = 938;
@@ -110,10 +114,13 @@
                 App.ctx = App.canvas.getContext("2d");
                 App.ctx.fillStyle = "solid";
                 App.ctx.strokeStyle = "#e51aca";
-                App.ctx.lineWidth = 10;
+                App.ctx.lineWidth = 5;
                 App.ctx.lineCap = "round";
                 
-                return App.draw = function(x, y, type) {
+                return App.draw = function(x, y, style, type) {
+                    App.ctx.strokeStyle = style.strokeStyle;
+                    App.ctx.lineWidth = style.lineWidth;
+
                     if (type === "dragstart") {
                         App.ctx.beginPath();
                         App.ctx.moveTo(x, y);
@@ -137,20 +144,26 @@
                     
                     type = e.handleObj.type;
                     //console.log(type);
-                    console.dir(e);
+                    //console.dir(e);
                     offset = $(this).offset();
-                    console.log("offsetX:" + offset.left);
-                    console.log("offsetY:" + offset.top);
+                    //console.log("offsetX:" + offset.left);
+                    //console.log("offsetY:" + offset.top);
                     e.offsetX = e.pageX - offset.left;
                     e.offsetY = e.pageY - offset.top;
                     x = e.offsetX;
                     y = e.offsetY;
+
+                    var lineStyle = {    
+                                        strokeStyle: App.ctx.strokeStyle,
+                                        stylelineWidth: App.ctx.lineWidth
+                                    };
                    
-                    App.draw(x, y, type);
+                    App.draw(x, y, lineStyle, type);
                     
                     App.socket.emit('drawClick', {
                         x: x,
                         y: y,
+                        style: lineStyle,
                         type: type
                     });
                 });

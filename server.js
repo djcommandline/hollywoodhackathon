@@ -43,7 +43,7 @@ var	https = require('https'),
 require('./config/express')(app, express, config);
 
 // Routing
-require('./config/routes')(app, config, OpenTok);
+require('./config/routes')(app, config, OpenTok, config);
 
 
 ///////////////
@@ -52,6 +52,9 @@ require('./config/routes')(app, config, OpenTok);
 
 io.sockets.on('connection', function(socket) {
   	console.log('Socket Connected!');
+  	console.dir(socket);
+
+  	socket.broadcast.emit('new user', { data : "User connected!!!"});
 
   	socket.on('test', function(data) {
   		console.log(data);
@@ -60,9 +63,10 @@ io.sockets.on('connection', function(socket) {
   	socket.on('drawClick', function(data) {
     	console.log("DRAW CLICK - : " + data);
 
-    	socket.emit('draw', {
+    	socket.broadcast.emit('draw', {
       		x: data.x,
       		y: data.y,
+      		style: data.style,
       		type: data.type
     	});
   	});
