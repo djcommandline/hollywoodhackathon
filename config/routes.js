@@ -11,14 +11,15 @@ module.exports = function (app, config, OpenTok, routes) {
 	
 	app.get('/image', function(req,res) {
 		var image = req.query.file.replace(" ","_").toLowerCase();
-		res.send("assets/images/"+image+".jpg");
+		res.send("assets/images/"+image+".png");
 		answer = image.replace("_"," ");
 	});
 	
 	app.get("/answer", function(req,res) {
 		res.send(answer);
-	}
+	});
 	
+	/*
 	app.get("/chat", function(req,res) {
 		var sessionId = req.query.sessionId;
 		var message = req.query.message;
@@ -37,6 +38,7 @@ module.exports = function (app, config, OpenTok, routes) {
 		res.send("success");
 		
 	});
+	*/
 
 	app.get('/', function (req, res) {	
 
