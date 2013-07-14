@@ -30,9 +30,11 @@
         <![endif]-->
 
         <!-- jQuery -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.event.drag-2.2/jquery.event.drag-2.2.js"></script>
         <script type="text/javascript" src="assets/js/jquery.event.drag-2.2/jquery.event.drag.live-2.2.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.event.move.js"></script>
+
 
         <!-- Socket IO -->
         <script type="text/javascript" src="socket.io/socket.io.js"></script>
@@ -132,10 +134,35 @@
             
                 // Draw Event
 
-                $('#canvas').on('drag mouseover dragstart dragend', function(e) {
+                /* $('#draw').drag(function (e) {
+
+                }) */
+
+                App.canvas.addEventListener( 'dragstart', function(e) {
                     var offset, type, x, y;
                     
                     type = e.handleObj.type;
+                    console.log(type);
+                    offset = $(this).offset();
+                    e.offsetX = e.layerX - offset.left;
+                    e.offsetY = e.layerY - offset.top;
+                    x = e.offsetX;
+                    y = e.offsetY;
+                   
+                    App.draw(x, y, type);
+                    
+                    App.socket.emit('drawClick', {
+                        x: x,
+                        y: y,
+                        type: type
+                    });
+                }, false);
+
+                $('#canvas').on('movestart move moveend mouseover dragstart dragend', function(e) {
+                    var offset, type, x, y;
+                    
+                    type = e.handleObj.type;
+                    console.log(type);
                     offset = $(this).offset();
                     e.offsetX = e.layerX - offset.left;
                     e.offsetY = e.layerY - offset.top;
