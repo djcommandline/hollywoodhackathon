@@ -73,7 +73,16 @@
                     if (e.streams[i].connection.connectionId == session.connection.connectionId) {
                       return;
                     }
-                    session.subscribe(e.streams[i]);
+                    
+                    // Create the div to put the subscriber element in to
+                    var div = document.createElement('div');
+                    div.setAttribute('id', 'stream' + e.streams[i].streamId);
+                    // document.body.appendChild(div);
+                    $('.playersbar .box').prepend(div);
+                    session.subscribe(e.streams[i], div.id);
+
+
+
                 }
             });
 
