@@ -52,7 +52,8 @@
             var apiKey = '<%= data.apiKey %>';
             var session = TB.initSession('<%= data.sessionId %>');
             var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
-
+			var nop = 1;
+			var currentPlayer = 1;
             session.addEventListener('sessionConnected', function(e){
             session.publish( publisher );
                 for (var i = 0; i < e.streams.length; i++) {
@@ -65,6 +66,7 @@
             });
 
             session.addEventListener('streamCreated', function(e){
+            	nop = e.streams.length;
                 for (var i = 0; i < e.streams.length; i++) {
                     // Make sure we don't subscribe to ourself
                     if (e.streams[i].connection.connectionId == session.connection.connectionId) {
@@ -150,12 +152,15 @@
             }
 
             $(document).ready(function () {
+            
 
                 App.init();
                 //console.log("APP");
                 //console.dir(App);
             
                 // Draw Event
+                $("#player" + currentPlayer).addClass("active");
+
 
                 $('#canvas').on('dragstart drag dragend', function(e) {
                     var offset, type, x, y;
@@ -209,6 +214,12 @@
 					}).done(function(msg){
 						$("#searchresult").attr('src', msg);
 					});
+			}
+			
+			function getTurn(){
+				$("#player" + currentPlayer).removeClass("active");
+				currentPlayer++;
+				$("#player" + currentPlayer).addClass("active");
 			}
 				
 
@@ -305,22 +316,22 @@
                     <!-- PARTICIPANT LAYER -->
                     <div class="playersbar">
                         <div class="box cf">
-                            <div class="playerview">
+                            <div class="playerview" id="player1" >
                                 <div class="playerinfo">
                                     <div class="playerole">Drizzle Maker</div>
                                 </div>
                             </div>
-                            <div class="playerview">
-                                <div class="playerinfo">
+                            <div class="playerview" id="player2" >
+                                <div class="playerinfo" >
                                     <div class="playerole">Drizzler</div>
                                 </div>
                             </div>
-                            <div class="playerview">
+                            <div class="playerview" id="player3" >
                                 <div class="playerinfo">
                                     <div class="playerole">Frizzler</div>
                                 </div>
                             </div>
-                            <div class="playerview">
+                            <div class="playerview" id="player4" >
                                 <div class="playerinfo">
                                     <div class="playerole">Frizzler</div>
                                 </div>
