@@ -2099,7 +2099,7 @@ body {
   font-weight: normal;
   color: #fff; }
 
-#sharebutton, #submitbutton {
+#sharebutton, #submitbutton, .styled {
   color: #fff;
   border: 0px;
   padding: 10px 0;

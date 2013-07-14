@@ -466,14 +466,18 @@
                         </div>
                     </div>
 
-                    <div id='chatBox' class="chatbox" style="height: 100px; background: #f0f0f0;"></div>
+                    <div class="chat-wrapper" style="font-size: 32px; color: #000; padding: 2%;">
+                        <div class="padding" style="padding: 2%; background: #fff;">
+                            <div id='chatBox' class="chatbox" style="height: 100px; border-top: #fff; "></div>
+                        </div>
+                    </div>
 
                     
                     <!-- SHARE LAYER -->
                     <div class="sharewrap">
                         <form action= "" method= "" >
-                            <input type="text" name="chat" style="80%" id="chat-message" value='' placeholder='Type in your guess here...' />
-                            <button id="chat" type="button" value="Submit" onclick="sendChat()" style="10%" ><i class="icon-envelope-alt"></i></button>
+                            <input type="text" name="chat" style="width: 86%" id="chat-message" value='' placeholder='Type in your guess here...' />
+                            <button id="chat" class="styled" type="button" value="Submit" onclick="sendChat()" style="10%" ><i class="icon-question"></i></button>
                         </form> 
                         <div id="share-link">
                             <form action="" method="POST" >
