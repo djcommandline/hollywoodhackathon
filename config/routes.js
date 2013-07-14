@@ -7,6 +7,7 @@ module.exports = function (app, config, OpenTok, routes) {
 		var secret = 'b10360ef840cd6659cd5d14d184f629926b55d30';  // Replace with your API secret  
 		var opentok = new OpenTok.OpenTokSDK(apiKey, secret);
 		var answer; 		
+		var player = 1;;
 	
 	app.get('/image', function(req,res) {
 		var image = req.query.file.replace(" ","_").toLowerCase();
@@ -40,12 +41,13 @@ module.exports = function (app, config, OpenTok, routes) {
 	app.get('/', function (req, res) {	
 
 		opentok.createSession(config.root, {'p2p.preference':'disabled'}, function (result) {
+			player++;
 	 		var data = {};
 
 	 		data.apiKey = apiKey;
 	 		data.sessionId = result;
 	 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
-
+			data.playerDiv = "player"+player;
 	 		res.render('index', { data : data });
 
 		});
@@ -58,6 +60,7 @@ module.exports = function (app, config, OpenTok, routes) {
 		data.apiKey = apiKey;
 		data.sessionId = req.params.sessionId;
 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
+					data.playerDiv = "player"+player;
 
 		res.render('index', { data : data });
 	});

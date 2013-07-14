@@ -69,7 +69,9 @@
 
             var apiKey = '<%= data.apiKey %>';
             var session = TB.initSession('<%= data.sessionId %>');
-            var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
+            var playerDiv = "<%= data.playerDiv %>";
+            
+            var publisher = TB.initPublisher(apiKey, playerDiv);
 			var nop = 1;
 			var currentPlayer = 1;
             session.addEventListener('sessionConnected', function(e){
