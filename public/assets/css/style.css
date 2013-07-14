@@ -2196,6 +2196,31 @@ body * {
 button:hover {
   opacity: .5; }
 
+.toggleimage {
+  border: 0px;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  background: grey;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #000;
+  color: #fff;
+  margin: 5px;
+  padding-top: 7px;
+  z-index: 111111;
+  cursor: pointer; }
+
+.searchresult img {
+  opacity: 1 !important; }
+
+img.present {
+  opacity: 1 !important; }
+
+img.notpresent {
+  opacity: .0 !important; }
+
 /*
 	=========
 	MIN 480px
