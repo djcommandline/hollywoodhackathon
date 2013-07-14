@@ -54,7 +54,6 @@
             var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
 			var nop = 1;
 			var currentPlayer = 1;
-			$("#player" + currentPlayer).addClass("active");
             session.addEventListener('sessionConnected', function(e){
             session.publish( publisher );
                 for (var i = 0; i < e.streams.length; i++) {
@@ -153,12 +152,15 @@
             }
 
             $(document).ready(function () {
+            
 
                 App.init();
                 //console.log("APP");
                 //console.dir(App);
             
                 // Draw Event
+                $("#player" + currentPlayer).addClass("active");
+
 
                 $('#canvas').on('dragstart drag dragend', function(e) {
                     var offset, type, x, y;
@@ -215,6 +217,7 @@
 			}
 			
 			function getTurn(){
+				$("#player" + currentPlayer).removeClass("active");
 				currentPlayer++;
 				$("#player" + currentPlayer).addClass("active");
 			}
