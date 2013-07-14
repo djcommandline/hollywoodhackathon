@@ -30,7 +30,7 @@
         <![endif]-->
 
         <!-- jQuery -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.event.drag-2.2/jquery.event.drag-2.2.js"></script>
         <script type="text/javascript" src="assets/js/jquery.event.drag-2.2/jquery.event.drag.live-2.2.js"></script>
         <script type="text/javascript" src="assets/js/jquery.event.move.js"></script>
@@ -50,8 +50,6 @@
             ///////////
 
             var apiKey = '<%= data.apiKey %>';
-            //var sessionId = '1_MX4zNTA5MzY3Mn4xMjcuMC4wLjF-U2F0IEp1bCAxMyAxMjozMTowOSBQRFQgMjAxM34wLjM0NDUxOTYyfg';
-            //var token = 'T1==cGFydG5lcl9pZD0zNTA5MzY3MiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1iNzI0MmMzZWFkZTkwNjk4Zjg5YjYwZWY2MThiOGNlMjdlZGQxY2JhOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDR6TlRBNU16WTNNbjR4TWpjdU1DNHdMakYtVTJGMElFcDFiQ0F4TXlBeE1qb3pNVG93T1NCUVJGUWdNakF4TTM0d0xqTTBORFV4T1RZeWZnJmNyZWF0ZV90aW1lPTEzNzM3NDM5MTEmbm9uY2U9MC4yODMyMTQ1ODEyMjQ1NjE4JmV4cGlyZV90aW1lPTEzNzM4MzAzMTImY29ubmVjdGlvbl9kYXRhPQ==';
             var session = TB.initSession('<%= data.sessionId %>');
             var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
 
@@ -95,6 +93,7 @@
             App.socket.emit('test', { data: 'data' });
 
             App.socket.on('draw', function(data) {
+                console.log('Draw: ' + data);
                 return App.draw(data.x, data.y, data.type);
             });
 
@@ -105,24 +104,24 @@
             App.init = function() {
 
                 App.canvas = document.getElementById('canvas');
-                App.canvas.height = 200;
-                App.canvas.width = 200;
+                App.canvas.height = 318;
+                App.canvas.width = 938;
                 
                 App.ctx = App.canvas.getContext("2d");
                 App.ctx.fillStyle = "solid";
-                App.ctx.strokeStyle = "#bada55";
-                App.ctx.lineWidth = 5;
+                App.ctx.strokeStyle = "#e51aca";
+                App.ctx.lineWidth = 10;
                 App.ctx.lineCap = "round";
                 
                 return App.draw = function(x, y, type) {
                     if (type === "dragstart") {
                         App.ctx.beginPath();
-                        return App.ctx.moveTo(x, y);
+                        App.ctx.moveTo(x, y);
                     } else if (type === "drag") {
                         App.ctx.lineTo(x, y);
-                        return App.ctx.stroke();
+                        App.ctx.stroke();
                     } else {
-                        return App.ctx.closePath();
+                        App.ctx.closePath();
                     }
                 }
             }
@@ -134,38 +133,17 @@
             
                 // Draw Event
 
-                /* $('#draw').drag(function (e) {
-
-                }) */
-
-                App.canvas.addEventListener( 'dragstart', function(e) {
+                $('#canvas').on('dragstart drag dragend', function(e) {
                     var offset, type, x, y;
                     
                     type = e.handleObj.type;
-                    console.log(type);
+                    //console.log(type);
+                    console.dir(e);
                     offset = $(this).offset();
-                    e.offsetX = e.layerX - offset.left;
-                    e.offsetY = e.layerY - offset.top;
-                    x = e.offsetX;
-                    y = e.offsetY;
-                   
-                    App.draw(x, y, type);
-                    
-                    App.socket.emit('drawClick', {
-                        x: x,
-                        y: y,
-                        type: type
-                    });
-                }, false);
-
-                $('#canvas').on('movestart move moveend mouseover dragstart dragend', function(e) {
-                    var offset, type, x, y;
-                    
-                    type = e.handleObj.type;
-                    console.log(type);
-                    offset = $(this).offset();
-                    e.offsetX = e.layerX - offset.left;
-                    e.offsetY = e.layerY - offset.top;
+                    console.log("offsetX:" + offset.left);
+                    console.log("offsetY:" + offset.top);
+                    e.offsetX = e.pageX - offset.left;
+                    e.offsetY = e.pageY - offset.top;
                     x = e.offsetX;
                     y = e.offsetY;
                    
@@ -183,7 +161,11 @@
 
         <style type="text/css">
             canvas {
-                
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                height: 318px;
+                width: 938px;
             }
 
             .streamcontainer {
@@ -352,15 +334,15 @@
         <!--/#outer-wrap-->
 
 
-        <!-- END OF PAGE SCRIPT --> 
+        <!-- END OF PAGE SCRIPT  
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/jquery-1.9.0.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.9.0.min.js"><\/script>')</script> -->
 
         <!-- Angular -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         
-        <!-- ADDITIONAL SCRIPTS --> 
-        <script src="./assets/js/plugins.js"></script>
+        <!-- ADDITIONAL SCRIPTS
+        <script src="./assets/js/plugins.js"></script> -->
 
         <!-- ADDITIONAL PAGE SCRIPTS --> 
         <script type="text/javascript">            
