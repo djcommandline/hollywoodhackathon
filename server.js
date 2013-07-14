@@ -34,7 +34,7 @@ var	https = require('https'),
 // OpenTok
 	OpenTok = require('opentok');
 	
-	Pusher = require("pusher");
+	//Pusher = require("pusher");
 
 
 ///////////////////
@@ -60,6 +60,10 @@ io.sockets.on('connection', function(socket) {
 
   	socket.on('test', function(data) {
   		console.log(data);
+  	});
+
+  	socket.on('chat', function(data) {
+  		socket.broadcast.emit('chat', { data : data })
   	});
   	
   	socket.on('drawClick', function(data) {

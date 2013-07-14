@@ -7,6 +7,7 @@ module.exports = function (app, config, OpenTok, routes) {
 		var secret = 'b10360ef840cd6659cd5d14d184f629926b55d30';  // Replace with your API secret  
 		var opentok = new OpenTok.OpenTokSDK(apiKey, secret);
 		var answer; 		
+		var player = 1;
 	
 	app.get('/image', function(req,res) {
 		var image = req.query.file.replace(" ","_").toLowerCase();
@@ -17,27 +18,6 @@ module.exports = function (app, config, OpenTok, routes) {
 	app.get("/answer", function(req,res) {
 		res.send(answer);
 	});
-	
-	/*
-	app.get("/chat", function(req,res) {
-		var sessionId = req.query.sessionId;
-		var message = req.query.message;
-		var Pusher = require('pusher');
-
-		var pusher = new Pusher({
- 			 appId: '49438',
- 			 key: 'a6e8bbac80495419c057',
-			  secret: 'c21d21e60d6c1949ad9a'
-		});
-
-		pusher.trigger(sessionId, 'chat', {
-		  "message": message
-		});
-		
-		res.send("success");
-		
-	});
-	*/
 
 	app.get('/', function (req, res) {	
 
@@ -47,19 +27,21 @@ module.exports = function (app, config, OpenTok, routes) {
 	 		data.apiKey = apiKey;
 	 		data.sessionId = result;
 	 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
-
+			data.playerDiv = "player"+player;
 	 		res.render('index', { data : data });
 
 		});
 	});
 
 	app.get('/:sessionId', function (req, res) {
+			player++;
 
 		var data = {};
 
 		data.apiKey = apiKey;
 		data.sessionId = req.params.sessionId;
 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
+		data.playerDiv = "player"+player;
 
 		res.render('index', { data : data });
 	});
