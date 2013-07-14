@@ -169,6 +169,24 @@
                 height: 500px !important;
             }
 
+
+
+            /* PARTICIPANT LAYER */
+            .playersbar {
+                width: 100%;
+                border: 1px solid black;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                height: 200px;
+            }
+
+            .playerview {
+                width: 25%;
+                float: left;
+                height: 200px;
+            }
+
         </style>
 
     </head>
@@ -184,6 +202,11 @@
                 <div class="block cf">                    
                     <a class="nav-btn" id="nav-open-btn"><i class="icon-reorder"></i></a>
                     <h1 class="title text-left"><span>Fo' Drizzle Frizzle</span></h1>
+
+                    <div class="shareit set-right">
+                        <div id="share-link"></div>
+                    </div>
+
                 </div>
             </header>
 
@@ -198,13 +221,52 @@
                         <div class="box padded">
                             <div class="m-25 bg-white o-hidden">
 
-                                <!-- PUT YOUR SHIT HERE -->
-
-                                <div class="streamcontainer">                                
-                                    <div id="myPublisherDiv"></div>
+                                <!-- ACTION LAYER -->
+                                <div class="searchwrap">
+                                    <div class="searchbar">
+                                        SEARCH BAR HERE
+                                    </div>
+                                    <div class="searchresult">
+                                        SEARCH RESULT HERE
+                                    </div>
                                 </div>
 
-                                 <canvas id='canvas'></canvas>
+
+                                <!-- VIDEO DISPLAY LAYER -->
+                                <div class="videodisplay">
+                                    CURRENT PARTIIPANT BEING DRAWN ON HERE
+                                    <div class="streamcontainer">
+
+                                        <div class="streamcontainer">                                
+                                            <div id="myPublisherDiv"></div>
+                                        </div>
+
+                                        <canvas id='canvas'></canvas>
+                                    </div>                                    
+                                </div>
+
+                                
+                                <!-- PARTICIPANT LAYER -->
+                                <div class="playersbar">
+                                    <div class="box cf">
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Drizzle Maker</div>
+                                            </div>
+                                        </div>
+                                        <div class="playerview">
+                                                <div class="playerole">Drizzler</div>
+                                        </div>
+                                        <div class="playerview">
+                                                <div class="playerole">Frizzler</div>
+                                        </div>
+                                        <div class="playerview">
+                                                <div class="playerole">Frizzler</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -221,7 +283,6 @@
                     <div class="c1 rel-center">
                         <div class="box padded">
                            <div class="m-15"> 
-                                <div id="share-link"></div>
                             </div>
                         </div>
                     </div>
