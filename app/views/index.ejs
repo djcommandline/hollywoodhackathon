@@ -50,9 +50,15 @@
         	////////
         	// CHAT //
         	/////////
+        	
+        	Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+      }
         	 var pusher = new Pusher('a6e8bbac80495419c057');
-    		 var channel = pusher.subscribe('test_channel');
-    		channel.bind('my_event', function(data) {
+    		var channel = pusher.subscribe('<%= data.sessionId %>');
+    		channel.bind('chat', function(data) {
 		      alert(data.message);
 		    });
 		    
@@ -254,13 +260,13 @@
 			
 			function sendChat(){
 		    
-		     var message = $("#chat").val();
+		     var message = $("#chat-message").val();
 		     $.ajax({
 		     	url: "/chat",
 		     	type: "get",
 		     	data: {message: message, sessionId: $("#sessionId").val()}
 		     	}).done(function(msg){
-		     		alert("send");
+		     		//alert("send");
 		     	});
 		     }
             
@@ -434,7 +440,10 @@
                     <div class="sharewrap">
                         <div class="chatbox" style="height: 100px; background: #f0f0f0;">
                             CHAT BOX
-
+							<form action= "" method= "" >
+								<input type="text" name="chat" id="chat-message" />
+								<button id="chat" onclick="sendChat()" />
+							</form>							
                         </div>
                         <div id="share-link">
                             <form action="" method="POST" >

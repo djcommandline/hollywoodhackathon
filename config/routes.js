@@ -28,7 +28,9 @@ module.exports = function (app, config, OpenTok, routes) {
 		  "message": message
 		});
 		
-		});
+		res.send("success");
+		
+	});
 
 	app.get('/', function (req, res) {	
 
