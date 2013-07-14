@@ -86,11 +86,12 @@
                     }
 
                     // Create the div to put the subscriber element in to
-                    if(i == 1)
+                    if(i == 1){
                     	var div = document.getElementById("myPublisherDiv");
+                    	$("#seachimage").addClass("notpresent");
+                    }
                     else {
-                    	var div = document.createElement('div');
-                       	$("#player"+(i+1)).append(div);
+                    	var div = document.getElementById("player"+(i+1));
                     }
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
                     // document.body.appendChild(div);
@@ -116,8 +117,7 @@
                     if(i == 1)
                     	var div = document.getElementById("myPublisherDiv");
                     else {
-                    	var div = document.createElement('div');
-                       	$("#player"+(i+1)).append(div);
+                    	var div = document.getElementById("player"+(i+1));
                     }
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
                     // document.body.appendChild(div);
