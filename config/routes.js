@@ -17,7 +17,10 @@ module.exports = function (app, config, OpenTok, routes) {
 	});
 	
 	app.get("/answer", function(req,res) {
-		if (req.query.message == games[req.query.sessionId]) {
+		console.log("CHECKING ANSWER: " + req.query.message);
+		console.log("ANSWER: " + games[req.query.sessionId].answer);
+
+		if (req.query.message == games[req.query.sessionId].answer) {
 			res.send("correct");
 		} else {
 			res.send('incorrect');

@@ -308,9 +308,11 @@
                     type: "get",
                     data: {message: $("#chat-message").val(), sessionId: $("#sessionId").val()}
                     }).done(function( msg ) {
+                        console.log('ANSWER IS: ' + msg);
+
                         if (msg == "correct") {
                             alert( "You are the winner!" );
-                            socket.emit('win', {message: "There is a winner!  The correct answer was <b>" + $("#chat-message").val() + ".  <br/>You lost :( Better luck next time..." })
+                            App.socket.emit('win', {message: "There is a winner!  The correct answer was <b>" + $("#chat-message").val() + ".  <br/>You lost :( Better luck next time..." })
                         }
                 });
 
