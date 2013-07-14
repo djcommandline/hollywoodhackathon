@@ -50,9 +50,15 @@
         	////////
         	// CHAT //
         	/////////
+        	
+        	Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+      }
         	 var pusher = new Pusher('a6e8bbac80495419c057');
-    		 var channel = pusher.subscribe('test_channel');
-    		channel.bind('my_event', function(data) {
+    		var channel = pusher.subscribe('<%= data.sessionId %>');
+    		channel.bind('chat', function(data) {
 		      alert(data.message);
 		    });
 		    
@@ -123,7 +129,8 @@
 
             App.socket.on('draw', function(data) {
                 console.log('Draw');
-                return App.draw(data.x, data.y, data.style, data.type);
+
+                return App.draw(data.x, data.y, data.brush, data.type);
             });
 
             /////////////
@@ -155,10 +162,15 @@
 
                 
                 return App.draw = function(x, y, brush, type) {
-                    console.dir(brush);
+                    //console.dir(brush);
 
                     //pp.ctx.strokeStyle = style.strokeStyle;
                     //App.ctx.lineWidth = style.lineWidth;
+
+                    App.ctx.fillStyle = brush.fillStyle;
+                    App.ctx.strokeStyle = brush.strokeStyle;
+                    App.ctx.lineWidth = brush.lineWidth;
+                    App.ctx.lineCap = brush.lineCap;
 
                     if (type === "dragstart") {
                         App.ctx.beginPath();
@@ -199,7 +211,7 @@
                     App.socket.emit('drawClick', {
                         x: x,
                         y: y,
-                        style: brush,
+                        brush: brush,
                         type: type
                     });
                 });                
@@ -263,13 +275,13 @@
 			
 			function sendChat(){
 		    
-		     var message = $("#chat").val();
+		     var message = $("#chat-message").val();
 		     $.ajax({
 		     	url: "/chat",
 		     	type: "get",
 		     	data: {message: message, sessionId: $("#sessionId").val()}
 		     	}).done(function(msg){
-		     		alert("send");
+		     		//alert("send");
 		     	});
 		     }
             
@@ -443,7 +455,10 @@
                     <div class="sharewrap">
                         <div class="chatbox" style="height: 100px; background: #f0f0f0;">
                             CHAT BOX
-
+							<form action= "" method= "" >
+								<input type="text" name="chat" id="chat-message" />
+								<button id="chat" onclick="sendChat()" />
+							</form>							
                         </div>
                         <div id="share-link">
                             <form action="" method="POST" >
