@@ -27,6 +27,7 @@ module.exports = function (app, config, OpenTok, routes) {
 	 		data.apiKey = apiKey;
 	 		data.sessionId = result;
 	 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
+			player = 1;
 			data.playerDiv = "player"+player;
 	 		res.render('index', { data : data });
 
