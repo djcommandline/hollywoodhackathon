@@ -129,7 +129,6 @@
             }
 
             $(document).ready(function () {
-                $("#share-link").html("<a href='http://drizzlefrizzle.com:3001/"+ "<%= data.sessionId %>" +"'>Get Link</a>");
 
                 App.init();
                 console.dir(App);
@@ -155,6 +154,16 @@
                     });
                 });
             });
+            
+            function sendEmail(){
+            	$.ajax({
+            		url: "/email",
+            		type: "post",
+            		data: {email: $("#email").val(), sessionId: $("#sessionId").val()}
+            		}).done(function( msg ) {
+  				alert( "Email Sent Status: " + msg );
+			});
+			}
 
         </script>
 
@@ -225,7 +234,13 @@
                     <div class="c1 rel-center">
                         <div class="box padded">
                            <div class="m-15"> 
-                                <div id="share-link"></div>
+                                <div id="share-link">
+                                <form action="" method="POST" >
+                                <input type="text" name="email" id="email">
+                                <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
+                                 <input type="button" value="Submit" onClick="sendEmail()">
+                                 </form>
+                                </div>
                             </div>
                         </div>
                     </div>

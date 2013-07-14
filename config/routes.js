@@ -8,8 +8,6 @@ module.exports = function (app, config, OpenTok) {
 		var opentok = new OpenTok.OpenTokSDK(apiKey, secret);
 	
 	app.get('/', function (req, res) {	
-		
-	
 
 		opentok.createSession(config.root, {'p2p.preference':'disabled'}, function (result) {
 	 		var data = {};
@@ -33,5 +31,29 @@ module.exports = function (app, config, OpenTok) {
 
 		res.render('index', { data : data });
 	});
+	
+	app.post('/email', function (req,res) {
+		var email = req.body.email;
+		var sessionId = req.body.sessionId;
+		
+		var SendGrid = require('sendgrid').SendGrid;
+		var sendgrid = new SendGrid("kar2905", "science123");
+		sendgrid.send({
+		  to: email,
+		  from: 'kar2905@gmail.com',
+		  subject: 'Drizzle Fizzle Invite',
+		  text: 'Click on this to get started http://drizzlefrizzle.com:3001/' + sessionId 
+		}, function(success, message) {
+			//res.render('email', { data : message });
+			res.send("Success");
+
+	  if (!success) {
+  		  console.log(message);
+ 		 }
+		});
+		
+	});
+
+
 
 }
