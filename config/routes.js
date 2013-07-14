@@ -14,6 +14,7 @@ module.exports = function (app, config, OpenTok) {
 		opentok.createSession(config.root, {'p2p.preference':'disabled'}, function (result) {
 	 		var data = {};
 
+	 		data.apiKey = apiKey;
 	 		data.sessionId = result;
 	 		data.token = opentok.generateToken({session_id:sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
 
@@ -30,6 +31,8 @@ module.exports = function (app, config, OpenTok) {
 		var location = '127.0.0.1'; // use an IP of 'localhost'
 
 		var data = {};
+
+		data.apiKey = apiKey;
 		data.sessionId = req.params.sessionId;
 		data.token = opentok.generateToken({session_id:sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
 

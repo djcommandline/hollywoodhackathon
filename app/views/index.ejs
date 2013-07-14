@@ -129,7 +129,7 @@
             }
 
             $(document).ready(function () {
-                $("#share-link").html("<a href='http://drizzlefrizzle.com:3001/"+sessionId+"'>Get Link</a>");
+                $("#share-link").html("<a href='http://drizzlefrizzle.com:3001/"+ "<%= data.sessionId %>" +"'>Get Link</a>");
 
                 App.init();
                 console.dir(App);
