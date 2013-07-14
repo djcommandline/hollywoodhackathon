@@ -131,8 +131,8 @@
                 console.dir(App);
 
                 
-                return App.draw = function(x, y, style, type) {
-                    console.dir(style);
+                return App.draw = function(x, y, brush, type) {
+                    console.dir(brush);
 
                     //pp.ctx.strokeStyle = style.strokeStyle;
                     //App.ctx.lineWidth = style.lineWidth;
@@ -166,19 +166,14 @@
                     e.offsetY = e.pageY - offset.top;
                     x = e.offsetX;
                     y = e.offsetY;
-
-                    var lineStyle = {    
-                                        strokeStyle: brush.strokeStyle,
-                                        stylelineWidth: brush.lineWidth
-                                    };
                     
-                    console.dir(lineStyle);
-                    App.draw(x, y, lineStyle, type);
+                    console.dir(brush);
+                    App.draw(x, y, brush, type);
                     
                     App.socket.emit('drawClick', {
                         x: x,
                         y: y,
-                        style: lineStyle,
+                        style: brush,
                         type: type
                     });
                 });
@@ -187,6 +182,33 @@
                     console.log('Resize');
 
                     saveResizeAndRedisplay($('.streamcontainer').width());
+                });
+
+                $('.brushSize').on('click', function() {
+                    console.log('SIZE:' + $(this).attr('id'));
+
+                    switch ($(this).attr('id')) {
+                        case 'large' :
+                            console.log()
+                            brush.lineWidth = 20;
+                            break;
+                        case 'medium' :
+                            brush.lineWidth = 10;
+                            break;
+                        case 'small' :
+                            brush.lineWidth = 5;
+                            break;
+                    }
+
+                    App.ctx.lineWidth = brush.lineWidth;
+
+                });
+
+                $('.brushColor').click(function() {
+                    console.log('COLOR:' + $(this).css('background-color'));
+
+                    brush.strokeStyle = rgb2hex($(this).css('background-color'));
+                    App.ctx.strokeStyle = brush.strokeStyle;
                 });
             });
             
@@ -234,6 +256,22 @@
 
             }
 
+            /////////////////////
+            // Color Utilities //
+            /////////////////////
+
+            var hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+
+            //Function to convert hex format to a rgb color
+            function rgb2hex(rgb) {
+             rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+             return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+            }
+
+            function hex(x) {
+              return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+             }
+
         </script>
 
         <style type="text/css">
@@ -243,6 +281,18 @@
             /* top: 0px;
             left: 0px; 
             margin-top: -318px; */
+        }
+        
+        #brushPicker {
+            position: absolute;
+            width: 30px;
+            float: left;
+            z-index: 101;
+        }
+
+        .brushSize, .brushColor {
+            width: 30px;
+            height: 30px;
         }
 
         .OT_mirrored {
@@ -266,6 +316,25 @@
 
                 <!-- LEFT PANEL -->
                 <div class="left-panel">
+                    <div id='brushPicker'>
+                        <div style='background-color:#d10000;' class='brushColor'></div>
+                        <div style='background-color:#ff6622;' class='brushColor'></div>
+                        <div style='background-color:#ffda21;' class='brushColor'></div>
+                        <div style='background-color:#33dd00;' class='brushColor'></div>
+                        <div style='background-color:#1133cc;' class='brushColor'></div>
+                        <div style='background-color:#220066;' class='brushColor'></div>
+                        <div style='background-color:#330044;' class='brushColor'></div>
+                        <div style='background-color:#FFFFFF;' class='brushColor'></div>
+                        <div style='background-color:#CCCCCC;' class='brushColor'></div>
+                        <div style='background-color:#999999;' class='brushColor'></div>
+                        <div style='background-color:#555555;' class='brushColor'></div>
+                        <div style='background-color:#222222;' class='brushColor'></div>
+                        <div style='background-color:#000000;' class='brushColor'></div>
+                        
+                        <div id='small' style='background-color:#FFFFFF;' class='brushSize'>S</div>
+                        <div id='medium' style='background-color:#FFFFFF;' class='brushSize'>M</div>
+                        <div id='large' style='background-color:#FFFFFF;' class='brushSize'>L</div>
+                    </div>
                     <!-- VIDEO DISPLAY LAYER -->
                     <div class="videodisplay">
                         <div class="streamcontainer">                                
