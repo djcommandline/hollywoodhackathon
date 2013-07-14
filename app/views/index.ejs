@@ -123,7 +123,8 @@
 
             App.socket.on('draw', function(data) {
                 console.log('Draw');
-                return App.draw(data.x, data.y, data.style, data.type);
+
+                return App.draw(data.x, data.y, data.brush, data.type);
             });
 
             /////////////
@@ -155,10 +156,15 @@
 
                 
                 return App.draw = function(x, y, brush, type) {
-                    console.dir(brush);
+                    //console.dir(brush);
 
                     //pp.ctx.strokeStyle = style.strokeStyle;
                     //App.ctx.lineWidth = style.lineWidth;
+
+                    App.ctx.fillStyle = brush.fillStyle;
+                    App.ctx.strokeStyle = brush.strokeStyle;
+                    App.ctx.lineWidth = brush.lineWidth;
+                    App.ctx.lineCap = brush.lineCap;
 
                     if (type === "dragstart") {
                         App.ctx.beginPath();
@@ -199,7 +205,7 @@
                     App.socket.emit('drawClick', {
                         x: x,
                         y: y,
-                        style: brush,
+                        brush: brush,
                         type: type
                     });
                 });                

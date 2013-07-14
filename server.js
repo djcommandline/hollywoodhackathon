@@ -66,7 +66,7 @@ io.sockets.on('connection', function(socket) {
     	socket.broadcast.emit('draw', {
       		x: data.x,
       		y: data.y,
-      		style: data.style,
+      		brush: data.brush,
       		type: data.type
     	});
   	});
