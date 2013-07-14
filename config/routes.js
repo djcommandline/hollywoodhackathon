@@ -10,7 +10,7 @@ module.exports = function (app, config, OpenTok, routes) {
 	
 	app.get('/image', function(req,res) {
 		var image = req.query.file.replace(" ","_").toLowerCase();
-		res.send("assets/images/"+image+".jpg");
+		res.send("assets/images/"+image+".png");
 	});
 	
 	app.get("/chat", function(req,res) {

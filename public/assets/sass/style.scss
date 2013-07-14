@@ -102,7 +102,7 @@ position: relative;
 
 
 body {
-  color: #333;
+  color: #9db748;
   position: relative;
   width: 100%;
   min-width: 20em;
@@ -204,9 +204,10 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
-  width: 46%;
+  width: 44%;
   padding: 2%;
-  background: rgba( 0, 0 ,0 , .5);
+  margin-left: 2%;
+  background: rgba( 0, 0 ,0 , 0);
 }
 
 .searchresult img {
@@ -247,16 +248,40 @@ canvas {
 }
 .playerinfo {
     text-align: center;
+    color: #9db748;
 }
 .playerview {
-    width: 25%;
+    width: 22.5%;
     float: left;
     height: 200px;
     background: #f0f0f0;
-    border: 1px solid black;
-    margin-left: -2px;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+#brushPicker {
+  cursor: pointer;
+  text-align: center;
+  padding: 2px;
+  background: #000;
+}
+#brushPicker > div:hover {
+  widtH: 100%;
+  display: block;
+  opacity: .5;
 }
 
+
+body * {
+  -webkit-transition-duration: 350ms;
+  -moz-transition-duration: 350ms;
+  -o-transition-duration: 350ms;
+  -ms-transition-duration: 350ms;
+  transition-duration: 350ms; 
+}
+
+button:hover {
+  opacity: .5;
+}
 
 
 // ==========================================
