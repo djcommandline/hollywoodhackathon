@@ -2241,6 +2241,10 @@ img.notpresent {
 #share-link :-ms-input-placeholder {
   color: #23dc9e; }
 
+.left-panel .videodisplay .OT_mirrored {
+  height: 900px !important;
+  width: 100% !important; }
+
 /*
 	=========
 	MIN 480px
