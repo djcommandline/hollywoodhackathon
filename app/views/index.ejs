@@ -89,7 +89,11 @@
                     var div = document.createElement('div');
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
                     // document.body.appendChild(div);
-                    $('.playersbar .box').prepend(div);
+                    //$('.playersbar .box').prepend(div);
+                    if(i == 1)
+                    	$("#myPublisherDiv").append(div);
+                    else
+	                    $("#player"+(i+1)).append(div);
                     session.subscribe(e.streams[i], div.id);
 
 
@@ -108,7 +112,12 @@
                     var div = document.createElement('div');
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
                     // document.body.appendChild(div);
-                    $('.playersbar .box').prepend(div);
+                    //$('.playersbar .box').prepend(div);
+                    if(i == 1)
+                    	$("#myPublisherDiv").append(div);
+                    else
+	                    $("#player"+(i+1)).append(div);
+
                     session.subscribe(e.streams[i], div.id);
                 }
             });
