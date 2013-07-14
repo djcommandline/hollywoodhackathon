@@ -13,11 +13,18 @@ module.exports = function (app, config, OpenTok, routes) {
 	app.get('/image', function(req,res) {
 		var image = req.query.file.replace(" ","_").toLowerCase();
 		res.send("assets/images/"+image+".png");
-		answer = image.replace("_"," ");
+		games[req.query.sessionId].answer = image.replace("_"," ");
 	});
 	
 	app.get("/answer", function(req,res) {
-		res.send(answer);
+		console.log("CHECKING ANSWER: " + req.query.message);
+		console.log("ANSWER: " + games[req.query.sessionId].answer);
+
+		if (req.query.message == games[req.query.sessionId].answer) {
+			res.send("correct");
+		} else {
+			res.send('incorrect');
+		}
 	});
 
 	app.get('/', function (req, res) {	

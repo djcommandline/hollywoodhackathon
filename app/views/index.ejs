@@ -114,9 +114,9 @@
                         return;
                     }
                     // Create the div to put the subscriber element in to
-                    if(i == 1){
+                    if(i == 0){
                     	var div = document.getElementById("myPublisherDiv");
-                    	$(".toggleimage > .icon-picture ").click();
+                    	//$(".toggleimage > .icon-picture ").click();
                     }
                     else {
                     	var div = document.getElementById("player"+(i+1));
@@ -145,6 +145,10 @@
 
             App.socket.on('new user', function(data) {
                 console.log(data.data);
+            });
+
+            App.socket.on('win', function(data) {
+                alert(data.message);
             });
 
             App.socket.on('chat', function(data){
@@ -219,7 +223,7 @@
             
                 // Draw Event
                 $("#player" + currentPlayer).addClass("active");
-				                    	$(".toggleimage > .icon-picture ").click();
+				$(".toggleimage > .icon-picture ").click();
 
 
                 $('#canvas').on('dragstart drag dragend', function(e) {
@@ -288,7 +292,7 @@
 				$.ajax({
 						url: "/image",
 						type: "get",
-						data: {file: $("#searchitem").val()}
+						data: {file: $("#searchitem").val(), sessionId: $("#sessionId").val()}
 					}).done(function(msg){
 						$("#searchresult").attr('src', msg);
 					});
@@ -302,10 +306,24 @@
 			
 			function sendChat(){
                 
+                $.ajax({
+                    url: "/answer",
+                    type: "get",
+                    data: {message: $("#chat-message").val(), sessionId: $("#sessionId").val()}
+                    }).done(function( msg ) {
+                        console.log('ANSWER IS: ' + msg);
+
+                        if (msg == "correct") {
+                            alert( "You are the winner!" );
+                            App.socket.emit('win', {message: "There is a winner!  The correct answer was <b>" + $("#chat-message").val() + ".  <br/>You lost :( Better luck next time..." })
+                        }
+                });
+
                 $('#chatBox').append("<h4>" + $("#chat-message").val() + "</h4>");
                 console.log("SEND CHAT: " + $("#chat-message").val());
                 App.socket.emit('chat', {message: $("#chat-message").val(), sessionId: $("#sessionId").val() });
                 $('#chat-message').attr('value','');
+                $('#chat-message').focus()
             }
 
             

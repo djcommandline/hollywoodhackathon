@@ -54,7 +54,7 @@ require('./config/routes')(app, config, OpenTok, config);
 
 io.sockets.on('connection', function(socket) {
   	console.log('Socket Connected!');
-  	console.dir(socket);
+  	//console.dir(socket);
 
   	socket.broadcast.emit('new user', { data : "User connected!!!"});
 
@@ -64,6 +64,10 @@ io.sockets.on('connection', function(socket) {
 
   	socket.on('chat', function(data) {
   		socket.broadcast.emit('chat', data)
+  	});
+
+  	socket.on('win', function(data) {
+  		socket.broadcast.emit('win', data)
   	});
   	
   	socket.on('drawClick', function(data) {
