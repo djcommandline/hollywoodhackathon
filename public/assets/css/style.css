@@ -2120,7 +2120,7 @@ body {
 
 .streamcontainer > div {
   width: 100% !important;
-  height: 680px !important; }
+  height: 600px; }
 
 /* ACTION LAYER */
 .searchbar, .sharewrap {

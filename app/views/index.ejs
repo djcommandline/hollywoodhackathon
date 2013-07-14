@@ -188,11 +188,7 @@
                     });
                 });
 
-                $(window).on('resize', function(e) {
-                    console.log('Resize');
 
-                    saveResizeAndRedisplay($('.streamcontainer').width());
-                });
             });
             
             function sendEmail(){
@@ -391,7 +387,14 @@
                     $('.videodisplay, .right-panel, #myPublisherDiv').css({ 'height' : newHeight + 'px'});
                     $('#myPublisherDiv').css({ 'height' : newHeight + 'px !important'});
 
-                  console.log(newWidth);
+
+                    saveResizeAndRedisplay($('.streamcontainer').width());
+                    App.canvas.height = $('.streamcontainer').height();
+                    App.ctx.fillStyle = brush.fillStyle;
+                    App.ctx.strokeStyle = brush.strokeStyle;
+                    App.ctx.lineWidth = brush.lineWidth;
+                    App.ctx.lineCap = brush.lineCap;
+
               });
 
 
