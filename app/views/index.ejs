@@ -108,8 +108,8 @@
 
             App.init = function() {
                 App.canvas = document.getElementById('canvas');
-                App.canvas.height = 318;
-                App.canvas.width = 938;
+                App.canvas.height = $('.streamcontainer').height();
+                App.canvas.width = $('.streamcontainer').width();
                 
                 App.ctx = App.canvas.getContext("2d");
                 App.ctx.fillStyle = "solid";
@@ -143,11 +143,7 @@
                     var offset, type, x, y;
                     
                     type = e.handleObj.type;
-                    //console.log(type);
-                    //console.dir(e);
                     offset = $(this).offset();
-                    //console.log("offsetX:" + offset.left);
-                    //console.log("offsetY:" + offset.top);
                     e.offsetX = e.pageX - offset.left;
                     e.offsetY = e.pageY - offset.top;
                     x = e.offsetX;
@@ -167,6 +163,13 @@
                         type: type
                     });
                 });
+
+                $(window).on('resize', function(e) {
+                    console.log('Resize');
+
+                    App.canvas.height = $('.streamcontainer').height();
+                    App.canvas.width = $('.streamcontainer').width();
+                });
             });
             
             function sendEmail(){
@@ -183,12 +186,15 @@
 
         <style type="text/css">
         canvas {
-            position: relative;
-            top: 0px;
-            left: 0px;
-            height: 318px;
-            width: 938px;
-            margin-top: -318px;
+            position: absolute;
+            z-index: 100;
+            /* top: 0px;
+            left: 0px; 
+            margin-top: -318px; */
+        }
+
+        .OT_mirrored {
+            float: none;
         }
 
         </style>
@@ -255,14 +261,12 @@
                                 <!-- VIDEO DISPLAY LAYER -->
                                 <div class="videodisplay">
                                     CURRENT PARTIIPANT BEING DRAWN ON HERE
-                                    <div class="streamcontainer">
 
-                                        <div class="streamcontainer">                                
-                                            <div id="myPublisherDiv"></div>
-                                        </div>
-
+                                    <div class="streamcontainer">                                
                                         <canvas id='canvas'></canvas>
-                                    </div>                                    
+                                        <div id="myPublisherDiv"></div>
+                                    </div>
+
                                 </div>
 
                                 
