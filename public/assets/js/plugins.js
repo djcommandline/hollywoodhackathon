@@ -33,12 +33,8 @@ jQuery(document).ready(function($) {
 
     });  
 
-/*
-        if($('.modalwrap h3').html()=="Order Confirmation"){
-            setTimeout(function() {       
-                location.href="/";
-            }, 200);
-        }
-*/
+    setTimeout(function() {       
+        $('.welcomescreen').fadeOut();
+    }, 6800);
 
 });
