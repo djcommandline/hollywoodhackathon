@@ -119,6 +119,8 @@
                     	//$(".toggleimage > .icon-picture ").click();
                     }
                     else {
+                    	if( playerDiv == "myPublisherDiv") 
+                    		 i = 1;
                     	var div = document.getElementById("player"+(i+1));
                     }
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
