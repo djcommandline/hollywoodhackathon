@@ -2129,6 +2129,12 @@ body {
   padding: 10px;
   background: #f0f0f0; }
 
+.sharewrap {
+  position: absolute;
+  width: 50%;
+  bottom: 0;
+  border-top: 1px solid #23dc9e; }
+
 .searchbar input, .sharewrap input {
   border: 0px solid #d0d0d0;
   color: #d0d0d0;

@@ -333,7 +333,7 @@
                     <div class="sharewrap">
                         <div id="share-link">
                             <form action="" method="POST" >
-                                <input placeholder="INVITE FRIENDS" type="text" name="email" id="email" style="width: 89%;">
+                                <input placeholder="INVITE@FRIENDS.COM" type="text" name="email" id="email" style="width: 87%;">
                                 <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
                                 <button id="sharebutton" type="button" value="Submit" onClick="sendEmail()" style="10%"><i class="icon-envelope-alt"></i></button>
                             </form>
@@ -353,15 +353,13 @@
         <!--/#outer-wrap-->
 
 
-        <!-- END OF PAGE SCRIPT  
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/jquery-1.9.0.min.js"><\/script>')</script> -->
+        <!-- END OF PAGE SCRIPT  -->
 
         <!-- Angular -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         
-        <!-- ADDITIONAL SCRIPTS
-        <script src="./assets/js/plugins.js"></script> -->
+        <!-- ADDITIONAL SCRIPTS -->
+        <script src="./assets/js/plugins.js"></script> 
 
         <!-- ADDITIONAL PAGE SCRIPTS --> 
         <script type="text/javascript">            
@@ -373,6 +371,18 @@
                 $('.input-wrap input').focusout(function(){
                     $(this).parent().removeClass('focused');
                 });
+
+              // reposition on element dimention changes
+              $(window).smartresize(function(){
+                  newWidth  = $(window).width();
+                  newHeight = $(window).height();
+
+                    $('.videodisplay, .right-panel').css({ 'height' : newHeight + 'px'});
+
+                  console.log(newWidth);
+              });
+
+
             });
         </script>
 
