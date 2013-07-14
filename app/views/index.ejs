@@ -160,13 +160,26 @@
             }
 
             .streamcontainer {
-                border: 1px solid red;
                 width: 50%;
             }
 
             .streamcontainer > div {
                 width: 100% !important;
-                height: 500px !important;
+                height: 300px !important;
+            }
+
+            /* ACTION LAYER */
+            .searchbar {
+                padding: 10px;
+                background: #f0f0f0;
+            }
+            .searchbar input {
+                border: 1px solid #d0d0d0;
+            }
+            #searchitem {
+                width: 90%;
+            }
+            #submitbutton {
             }
 
 
@@ -174,17 +187,23 @@
             /* PARTICIPANT LAYER */
             .playersbar {
                 width: 100%;
-                border: 1px solid black;
                 position: fixed;
                 bottom: 0;
                 left: 0;
                 height: 200px;
             }
 
+            .playerinfo {
+                text-align: center;
+            }
+
             .playerview {
                 width: 25%;
                 float: left;
                 height: 200px;
+                background: #f0f0f0;
+                border: 1px solid black;
+                margin-left: -2px;
             }
 
         </style>
@@ -224,10 +243,15 @@
                                 <!-- ACTION LAYER -->
                                 <div class="searchwrap">
                                     <div class="searchbar">
-                                        SEARCH BAR HERE
+                                        <label for="searchitem">SEARCH</label>
+                                        <form action="">
+                                            <input type="text" id="searchitem" name="searchitem" />
+                                            <button id="submitbutton" type="submit">-></button>
+                                        </form>
                                     </div>
                                     <div class="searchresult">
-                                        SEARCH RESULT HERE
+                                        SEARCH RESULT DISPLAYED HERE <br>
+                                        <img src="http://placehold.it/100x100" alt="">
                                     </div>
                                 </div>
 
@@ -255,13 +279,19 @@
                                             </div>
                                         </div>
                                         <div class="playerview">
+                                            <div class="playerinfo">
                                                 <div class="playerole">Drizzler</div>
+                                            </div>
                                         </div>
                                         <div class="playerview">
+                                            <div class="playerinfo">
                                                 <div class="playerole">Frizzler</div>
+                                            </div>
                                         </div>
                                         <div class="playerview">
+                                            <div class="playerinfo">
                                                 <div class="playerole">Frizzler</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
