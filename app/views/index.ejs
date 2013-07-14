@@ -423,7 +423,7 @@
                 <div class="right-panel">
 
                     <div class="apptitle">
-                        DRIZZLE FRIZZLE
+                        DRIZZLE FRIZZLE {{name}}
                     </div>
 
                     <!-- SEARCH LAYER -->
@@ -431,7 +431,7 @@
                         <div class="searchwrap">
                             <div class="searchbar">
                                 <form action="">
-                                    <input placeholder="SEARCH PICTURE" type="text" id="searchitem" name="searchitem" />
+                                    <input ng-model="name" placeholder="SEARCH PICTURE" type="text" id="searchitem" name="searchitem" />
                                     <button id="submitbutton" type="submit" onclick="search()"><i class="icon-picture"></i></button>
                                 </form>
                             </div>
