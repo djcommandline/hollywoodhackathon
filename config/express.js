@@ -39,7 +39,7 @@ module.exports = function (app, express, config) {
 			console.log(err);
 			console.log(err.stack);
 			res.status(500);
-			res.send('500 error %s', err);
+			res.send('500 error' + err);
 		});
 
 

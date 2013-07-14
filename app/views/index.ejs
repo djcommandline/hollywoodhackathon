@@ -14,8 +14,6 @@
         <!-- modernizr -->
         <script type="text/javascript" src="assets/js/modernizr.js"></script>
 
-        <!-- font awesome -->    
-        <link rel="stylesheet" href="./assets/css/font-awesome.css">
         <!--[if IE 7]>
         <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
         <![endif]-->
@@ -91,7 +89,6 @@
             var App = {};
 
             App.socket = io.connect('http://localhost:3001');
-            console.log(io);
 
             App.socket.emit('test', { data: 'data' });
 
@@ -132,7 +129,6 @@
                 $("#share-link").html("<a href='http://drizzlefrizzle.com:3001/"+ "<%= data.sessionId %>" +"'>Get Link</a>");
 
                 App.init();
-                console.dir(App);
             
                 // Draw Event
 
