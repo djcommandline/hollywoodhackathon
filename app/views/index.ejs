@@ -166,14 +166,11 @@
                     });
                 });
 
-                /*$(window).on('resize', function(e) {
+                $(window).on('resize', function(e) {
                     console.log('Resize');
 
-                    App.ctx.save();
-                    App.canvas.height = $('.streamcontainer').height();
-                    App.canvas.width = $('.streamcontainer').width();
-                    App.ctx.restore();
-                });*/
+                    saveResizeAndRedisplay($('.streamcontainer').width());
+                });
             });
             
             function sendEmail(){
@@ -189,16 +186,16 @@
             function saveResizeAndRedisplay(newWidth) {
 
                 // save the canvas content as imageURL
-                var data = canvas.toDataURL();
-
+                var data = App.canvas.toDataURL();
+                var newHeight = (newWidth * App.canvas.height) / App.canvas.width;
                 // resize the canvas
-                canvas.width *= scaleFactor;
-                canvas.height *= scaleFactor;
+                App.canvas.width = newWidth;
+                App.canvas.height = newHeight;
 
                 // scale and redraw the canvas content
                 var img = new Image();
                 img.onload = function () {
-                    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+                    App.ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, App.canvas.width, App.canvas.height);
                 }
                 img.src = data;
 
