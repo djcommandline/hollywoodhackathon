@@ -107,22 +107,35 @@
             // Drawing //
             /////////////
 
+            var brush = {
+                            fillStyle : "solid",
+                            strokeStyle : "#e51aca",
+                            lineWidth : 5,
+                            lineCap : "round"
+                        };
+
             App.init = function() {
                 App.canvas = document.getElementById('canvas');
                 App.canvas.height = $('.streamcontainer').height();
                 App.canvas.width = $('.streamcontainer').width();
+
+                //var style = 
                 
                 App.ctx = App.canvas.getContext("2d");
-                App.ctx.fillStyle = "solid";
-                App.ctx.strokeStyle = "#e51aca";
-                App.ctx.lineWidth = 5;
-                App.ctx.lineCap = "round";
+                App.ctx.fillStyle = brush.fillStyle;
+                App.ctx.strokeStyle = brush.strokeStyle;
+                App.ctx.lineWidth = brush.lineWidth;
+                App.ctx.lineCap = brush.lineCap;
+
+                console.log("APP!");
+                console.dir(App);
+
                 
                 return App.draw = function(x, y, style, type) {
                     console.dir(style);
 
-                    App.ctx.strokeStyle = style.strokeStyle;
-                    App.ctx.lineWidth = style.lineWidth;
+                    //pp.ctx.strokeStyle = style.strokeStyle;
+                    //App.ctx.lineWidth = style.lineWidth;
 
                     if (type === "dragstart") {
                         App.ctx.beginPath();
@@ -139,6 +152,8 @@
             $(document).ready(function () {
 
                 App.init();
+                //console.log("APP");
+                //console.dir(App);
             
                 // Draw Event
 
@@ -153,10 +168,11 @@
                     y = e.offsetY;
 
                     var lineStyle = {    
-                                        strokeStyle: App.ctx.strokeStyle,
-                                        stylelineWidth: App.ctx.lineWidth
+                                        strokeStyle: brush.strokeStyle,
+                                        stylelineWidth: brush.lineWidth
                                     };
-                   
+                    
+                    console.dir(lineStyle);
                     App.draw(x, y, lineStyle, type);
                     
                     App.socket.emit('drawClick', {
@@ -204,6 +220,10 @@
                 // resize the canvas
                 App.canvas.width = newWidth;
                 App.canvas.height = newHeight;
+                App.ctx.fillStyle = brush.fillStyle;
+                App.ctx.strokeStyle = brush.strokeStyle;
+                App.ctx.lineWidth = brush.lineWidth;
+                App.ctx.lineCap = brush.lineCap;
 
                 // scale and redraw the canvas content
                 var img = new Image();
