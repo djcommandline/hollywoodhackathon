@@ -207,101 +207,85 @@
         <div id="inner-wrap">
 
 
-            <!-- LEFT LOGO -->
-            <header id="header" class="left-layout" role="banner">
-                <div class="block cf">                    
-                    <a class="nav-btn" id="nav-open-btn"><i class="icon-reorder"></i></a>
-                    <h1 class="title text-left"><span>Fo' Drizzle Frizzle</span></h1>
-
-                    <div class="shareit set-right">
-                        <div id="share-link"></div>
-                    </div>
-
-                </div>
-            </header>
-
-
 
             <!-- THE MAIN PORTION OF THE PAGE -->
             <div id="main" role="main" class="bg-light">
 
 
-                <div class="block button-examples">
-                    <div class="c1 rel-center p25">
-                        <div class="box padded">
-                            <div class="m-25 bg-white o-hidden">
-
-                                <!-- ACTION LAYER -->
-                                <div class="searchwrap">
-                                    <div class="searchbar">
-                                        <label for="searchitem">SEARCH</label>
-                                        <form action="">
-                                            <input type="text" id="searchitem" name="searchitem" />
-                                            <button id="submitbutton" type="submit">-></button>
-                                        </form>
-                                    </div>
-                                    <div class="searchresult">
-                                        SEARCH RESULT DISPLAYED HERE <br>
-                                        <img src="http://placehold.it/100x100" alt="">
-                                    </div>
-                                </div>
-
-                                <!-- SHARE -->
-                                <div id="share-link">
-                                    <form action="" method="POST" >
-                                        <input type="text" name="email" id="email">
-                                        <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
-                                        <input type="button" value="Submit" onClick="sendEmail()">
-                                    </form>
-                                </div>
-
-
-
-
-                                <!-- VIDEO DISPLAY LAYER -->
-                                <div class="videodisplay">
-                                    CURRENT PARTIIPANT BEING DRAWN ON HERE
-
-                                    <div class="streamcontainer">                                
-                                        <canvas id='canvas'></canvas>
-                                        <div id="myPublisherDiv"></div>
-                                    </div>
-
-                                </div>
-
-                                
-                                <!-- PARTICIPANT LAYER -->
-                                <div class="playersbar">
-                                    <div class="box cf">
-                                        <div class="playerview">
-                                            <div class="playerinfo">
-                                                <div class="playerole">Drizzle Maker</div>
-                                            </div>
-                                        </div>
-                                        <div class="playerview">
-                                            <div class="playerinfo">
-                                                <div class="playerole">Drizzler</div>
-                                            </div>
-                                        </div>
-                                        <div class="playerview">
-                                            <div class="playerinfo">
-                                                <div class="playerole">Frizzler</div>
-                                            </div>
-                                        </div>
-                                        <div class="playerview">
-                                            <div class="playerinfo">
-                                                <div class="playerole">Frizzler</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
+                <!-- LEFT PANEL -->
+                <div class="left-panel">
+                    <!-- VIDEO DISPLAY LAYER -->
+                    <div class="videodisplay">
+                        <div class="streamcontainer">                                
+                            <canvas id='canvas'></canvas>
+                            <div id="myPublisherDiv"></div>
                         </div>
                     </div>
                 </div>
+
+
+                <!-- RIGHT PANEL -->
+                <div class="right-panel">
+
+                    <div class="apptitle">
+                        DRIZZLE FRIZZLE
+                    </div>
+
+                    <!-- ACTION LAYER -->
+                    <div class="actions">
+                        <div class="searchwrap">
+                            <div class="searchbar">
+                                <label for="searchitem">SEARCH</label>
+                                <form action="">
+                                    <input type="text" id="searchitem" name="searchitem" />
+                                    <button id="submitbutton" type="submit">-></button>
+                                </form>
+                            </div>
+                            <div class="searchresult">
+                                SEARCH RESULT DISPLAYED HERE <br>
+                                <img src="http://placehold.it/100x100" alt="">
+                            </div>
+                        </div>
+
+                        <!-- SHARE -->
+                        <div id="share-link">
+                            <form action="" method="POST" >
+                                <input type="text" name="email" id="email">
+                                <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
+                                <input type="button" value="Submit" onClick="sendEmail()">
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <!-- PARTICIPANT LAYER -->
+                    <div class="playersbar">
+                        <div class="box cf">
+                            <div class="playerview">
+                                <div class="playerinfo">
+                                    <div class="playerole">Drizzle Maker</div>
+                                </div>
+                            </div>
+                            <div class="playerview">
+                                <div class="playerinfo">
+                                    <div class="playerole">Drizzler</div>
+                                </div>
+                            </div>
+                            <div class="playerview">
+                                <div class="playerinfo">
+                                    <div class="playerole">Frizzler</div>
+                                </div>
+                            </div>
+                            <div class="playerview">
+                                <div class="playerinfo">
+                                    <div class="playerole">Frizzler</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
 
             </div>
 
