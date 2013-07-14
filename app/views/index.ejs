@@ -118,6 +118,8 @@
                 App.ctx.lineCap = "round";
                 
                 return App.draw = function(x, y, style, type) {
+                    console.dir(style);
+
                     App.ctx.strokeStyle = style.strokeStyle;
                     App.ctx.lineWidth = style.lineWidth;
 
@@ -164,12 +166,14 @@
                     });
                 });
 
-                $(window).on('resize', function(e) {
+                /*$(window).on('resize', function(e) {
                     console.log('Resize');
 
+                    App.ctx.save();
                     App.canvas.height = $('.streamcontainer').height();
                     App.canvas.width = $('.streamcontainer').width();
-                });
+                    App.ctx.restore();
+                });*/
             });
             
             function sendEmail(){
@@ -181,6 +185,24 @@
   				alert( "Email Sent Status: " + msg );
 			});
 			}
+
+            function saveResizeAndRedisplay(newWidth) {
+
+                // save the canvas content as imageURL
+                var data = canvas.toDataURL();
+
+                // resize the canvas
+                canvas.width *= scaleFactor;
+                canvas.height *= scaleFactor;
+
+                // scale and redraw the canvas content
+                var img = new Image();
+                img.onload = function () {
+                    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+                }
+                img.src = data;
+
+            }
 
         </script>
 
