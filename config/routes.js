@@ -8,6 +8,7 @@ module.exports = function (app, config, OpenTok, routes) {
 		var opentok = new OpenTok.OpenTokSDK(apiKey, secret);
 		var answer; 		
 		var player = 1;
+		var games = [];
 	
 	app.get('/image', function(req,res) {
 		var image = req.query.file.replace(" ","_").toLowerCase();
@@ -21,13 +22,14 @@ module.exports = function (app, config, OpenTok, routes) {
 
 	app.get('/', function (req, res) {	
 
+
+
 		opentok.createSession(config.root, {'p2p.preference':'disabled'}, function (result) {
 	 		var data = {};
 
 	 		data.apiKey = apiKey;
 	 		data.sessionId = result;
 	 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
-			player = 1;
 			data.playerDiv = "player"+player;
 	 		res.render('index', { data : data });
 
