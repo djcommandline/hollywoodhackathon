@@ -69,7 +69,9 @@
 
             var apiKey = '<%= data.apiKey %>';
             var session = TB.initSession('<%= data.sessionId %>');
-            var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
+            var playerDiv = "<%= data.playerDiv %>";
+            
+            var publisher = TB.initPublisher(apiKey, playerDiv);
 			var nop = 1;
 			var currentPlayer = 1;
             session.addEventListener('sessionConnected', function(e){
@@ -79,7 +81,7 @@
                     if (e.streams[i].connection.connectionId == session.connection.connectionId) {
                       return;
                     }
-                    
+
                     // Create the div to put the subscriber element in to
                     var div = document.createElement('div');
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
@@ -385,9 +387,9 @@
                         <div style='background-color:#222222;' class='brushColor'></div>
                         <div style='background-color:#000000;' class='brushColor'></div>
                         
-                        <div id='small' style='background-color:#FFFFFF;' class='brushSize'>S</div>
-                        <div id='medium' style='background-color:#FFFFFF;' class='brushSize'>M</div>
-                        <div id='large' style='background-color:#FFFFFF;' class='brushSize'>L</div>
+                        <div id='small' style='background-color:#FFFFFF;' class='brushSize'><i class="icon-circle-blank" style="font-size: 8px"></i></div>
+                        <div id='medium' style='background-color:#FFFFFF;' class='brushSize'><i class="icon-circle-blank" style="font-size: 10px"></i></div>
+                        <div id='large' style='background-color:#FFFFFF;' class='brushSize'><i class="icon-circle-blank" style="font-size: 12px"></i></div>
                     </div>
                     <!-- VIDEO DISPLAY LAYER -->
                     <div class="videodisplay">
