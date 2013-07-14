@@ -14,8 +14,6 @@
         <!-- modernizr -->
         <script type="text/javascript" src="assets/js/modernizr.js"></script>
 
-        <!-- font awesome -->    
-        <link rel="stylesheet" href="./assets/css/font-awesome.css">
         <!--[if IE 7]>
         <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
         <![endif]-->
@@ -32,9 +30,11 @@
         <![endif]-->
 
         <!-- jQuery -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.event.drag-2.2/jquery.event.drag-2.2.js"></script>
         <script type="text/javascript" src="assets/js/jquery.event.drag-2.2/jquery.event.drag.live-2.2.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.event.move.js"></script>
+
 
         <!-- Socket IO -->
         <script type="text/javascript" src="socket.io/socket.io.js"></script>
@@ -91,7 +91,6 @@
             var App = {};
 
             App.socket = io.connect('http://localhost:3001');
-            console.log(io);
 
             App.socket.emit('test', { data: 'data' });
 
@@ -131,14 +130,38 @@
             $(document).ready(function () {
 
                 App.init();
-                console.dir(App);
             
                 // Draw Event
 
-                $('#canvas').on('drag mouseover dragstart dragend', function(e) {
+                /* $('#draw').drag(function (e) {
+
+                }) */
+
+                App.canvas.addEventListener( 'dragstart', function(e) {
                     var offset, type, x, y;
                     
                     type = e.handleObj.type;
+                    console.log(type);
+                    offset = $(this).offset();
+                    e.offsetX = e.layerX - offset.left;
+                    e.offsetY = e.layerY - offset.top;
+                    x = e.offsetX;
+                    y = e.offsetY;
+                   
+                    App.draw(x, y, type);
+                    
+                    App.socket.emit('drawClick', {
+                        x: x,
+                        y: y,
+                        type: type
+                    });
+                }, false);
+
+                $('#canvas').on('movestart move moveend mouseover dragstart dragend', function(e) {
+                    var offset, type, x, y;
+                    
+                    type = e.handleObj.type;
+                    console.log(type);
                     offset = $(this).offset();
                     e.offsetX = e.layerX - offset.left;
                     e.offsetY = e.layerY - offset.top;
@@ -173,13 +196,50 @@
             }
 
             .streamcontainer {
-                border: 1px solid red;
                 width: 50%;
             }
 
             .streamcontainer > div {
                 width: 100% !important;
-                height: 500px !important;
+                height: 300px !important;
+            }
+
+            /* ACTION LAYER */
+            .searchbar {
+                padding: 10px;
+                background: #f0f0f0;
+            }
+            .searchbar input {
+                border: 1px solid #d0d0d0;
+            }
+            #searchitem {
+                width: 90%;
+            }
+            #submitbutton {
+            }
+
+
+
+            /* PARTICIPANT LAYER */
+            .playersbar {
+                width: 100%;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                height: 200px;
+            }
+
+            .playerinfo {
+                text-align: center;
+            }
+
+            .playerview {
+                width: 25%;
+                float: left;
+                height: 200px;
+                background: #f0f0f0;
+                border: 1px solid black;
+                margin-left: -2px;
             }
 
         </style>
@@ -197,6 +257,11 @@
                 <div class="block cf">                    
                     <a class="nav-btn" id="nav-open-btn"><i class="icon-reorder"></i></a>
                     <h1 class="title text-left"><span>Fo' Drizzle Frizzle</span></h1>
+
+                    <div class="shareit set-right">
+                        <div id="share-link"></div>
+                    </div>
+
                 </div>
             </header>
 
@@ -211,13 +276,63 @@
                         <div class="box padded">
                             <div class="m-25 bg-white o-hidden">
 
-                                <!-- PUT YOUR SHIT HERE -->
-
-                                <div class="streamcontainer">                                
-                                    <div id="myPublisherDiv"></div>
+                                <!-- ACTION LAYER -->
+                                <div class="searchwrap">
+                                    <div class="searchbar">
+                                        <label for="searchitem">SEARCH</label>
+                                        <form action="">
+                                            <input type="text" id="searchitem" name="searchitem" />
+                                            <button id="submitbutton" type="submit">-></button>
+                                        </form>
+                                    </div>
+                                    <div class="searchresult">
+                                        SEARCH RESULT DISPLAYED HERE <br>
+                                        <img src="http://placehold.it/100x100" alt="">
+                                    </div>
                                 </div>
 
-                                 <canvas id='canvas'></canvas>
+
+                                <!-- VIDEO DISPLAY LAYER -->
+                                <div class="videodisplay">
+                                    CURRENT PARTIIPANT BEING DRAWN ON HERE
+                                    <div class="streamcontainer">
+
+                                        <div class="streamcontainer">                                
+                                            <div id="myPublisherDiv"></div>
+                                        </div>
+
+                                        <canvas id='canvas'></canvas>
+                                    </div>                                    
+                                </div>
+
+                                
+                                <!-- PARTICIPANT LAYER -->
+                                <div class="playersbar">
+                                    <div class="box cf">
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Drizzle Maker</div>
+                                            </div>
+                                        </div>
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Drizzler</div>
+                                            </div>
+                                        </div>
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Frizzler</div>
+                                            </div>
+                                        </div>
+                                        <div class="playerview">
+                                            <div class="playerinfo">
+                                                <div class="playerole">Frizzler</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -234,6 +349,7 @@
                     <div class="c1 rel-center">
                         <div class="box padded">
                            <div class="m-15"> 
+
                                 <div id="share-link">
                                 <form action="" method="POST" >
                                 <input type="text" name="email" id="email">
