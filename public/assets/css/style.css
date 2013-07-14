@@ -2165,7 +2165,8 @@ body {
 
 .playerinfo {
   text-align: center;
-  color: #9db748; }
+  color: #23dc9e;
+  margin-bottom: 20px; }
 
 .playerview {
   width: 22.5% !important;
@@ -2173,7 +2174,12 @@ body {
   height: 200px !important;
   background: #f0f0f0 !important;
   margin-left: 2% !important;
-  margin-top: 2% !important; }
+  margin-top: 2% !important;
+  text-align: center; }
+
+.icon-user {
+  color: #d0d0d0;
+  font-size: 80px; }
 
 #brushPicker {
   cursor: pointer;
@@ -2220,6 +2226,20 @@ img.present {
 
 img.notpresent {
   opacity: .0 !important; }
+
+#share-link ::-webkit-input-placeholder {
+  color: #23dc9e; }
+
+#share-link :-moz-placeholder {
+  /* Firefox 18- */
+  color: #23dc9e; }
+
+#share-link ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #23dc9e; }
+
+#share-link :-ms-input-placeholder {
+  color: #23dc9e; }
 
 /*
 	=========
