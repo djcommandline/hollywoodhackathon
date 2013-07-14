@@ -6,12 +6,17 @@ module.exports = function (app, config, OpenTok, routes) {
 		var apiKey = '25925352';    // Replace with your API key  
 		var secret = 'b10360ef840cd6659cd5d14d184f629926b55d30';  // Replace with your API secret  
 		var opentok = new OpenTok.OpenTokSDK(apiKey, secret);
-	
+		var answer; 		
 	
 	app.get('/image', function(req,res) {
 		var image = req.query.file.replace(" ","_").toLowerCase();
 		res.send("assets/images/"+image+".jpg");
+		answer = image.replace("_"," ");
 	});
+	
+	app.get("/answer", function(req,res) {
+		res.send(answer);
+	}
 	
 	app.get("/chat", function(req,res) {
 		var sessionId = req.query.sessionId;
