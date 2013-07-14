@@ -96,7 +96,7 @@ $bgNav: $secondaryColor;
 .c3 .box.padded > div,
 .c2 .box.padded > div,
 .c1 .box.padded > div {
-padding: 1em;
+padding: .5em;
 position: relative;
 }
 
@@ -119,8 +119,8 @@ body {
 }
 
 #footer .block {
-max-width: 1020px;
-margin: 0 auto;
+  max-width: 1020px;
+  margin: 0 auto;
 }
 
 .c1 > .box,
@@ -174,7 +174,9 @@ canvas {
 #submitbutton {
 }
 
-
+.OT_mirrored {
+  float: left;
+}
 
 /* PARTICIPANT LAYER */
 .playersbar {

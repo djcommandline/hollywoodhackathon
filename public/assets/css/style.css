@@ -1475,8 +1475,9 @@ form input {
   border: 0px;
   width: 100%;
   margin: 0px;
-  background: transparent;
-  padding: .25em 0; }
+  background: #f0f0f0;
+  padding: .25em 0;
+  border: 1px solid #c0c0c0; }
 
 .input-wrap.focused {
   box-shadow: inset 0 0 5px #7e5480; }
@@ -2045,7 +2046,7 @@ input[type="search"] {
 .c3 .box.padded > div,
 .c2 .box.padded > div,
 .c1 .box.padded > div {
-  padding: 1em;
+  padding: .5em;
   position: relative; }
 
 body {
@@ -2100,6 +2101,9 @@ body {
 
 #searchitem {
   width: 90%; }
+
+.OT_mirrored {
+  float: left; }
 
 /* PARTICIPANT LAYER */
 .playersbar {

@@ -40,7 +40,6 @@
         <script type="text/javascript" src="socket.io/socket.io.js"></script>
 
         <!-- TOK BOX -->
-
         <script type="text/javascript" src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js"></script>
 
         <script type="text/javascript">
@@ -75,7 +74,8 @@
                     // Create the div to put the subscriber element in to
                     var div = document.createElement('div');
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
-                    document.body.appendChild(div);
+                    // document.body.appendChild(div);
+                    $('.playersbar').prepend(div);
                     session.subscribe(e.streams[i], div.id);
                 }
             });
@@ -242,6 +242,17 @@
                                     </div>
                                 </div>
 
+                                <!-- SHARE -->
+                                <div id="share-link">
+                                    <form action="" method="POST" >
+                                        <input type="text" name="email" id="email">
+                                        <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
+                                        <input type="button" value="Submit" onClick="sendEmail()">
+                                    </form>
+                                </div>
+
+
+
 
                                 <!-- VIDEO DISPLAY LAYER -->
                                 <div class="videodisplay">
@@ -301,13 +312,7 @@
                         <div class="box padded">
                            <div class="m-15"> 
 
-                                <div id="share-link">
-                                <form action="" method="POST" >
-                                <input type="text" name="email" id="email">
-                                <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
-                                 <input type="button" value="Submit" onClick="sendEmail()">
-                                 </form>
-                                </div>
+
                             </div>
                         </div>
                     </div>
