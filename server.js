@@ -63,7 +63,7 @@ io.sockets.on('connection', function(socket) {
   	});
 
   	socket.on('chat', function(data) {
-  		socket.broadcast.emit('chat', { data : data })
+  		socket.broadcast.emit('chat', data)
   	});
   	
   	socket.on('drawClick', function(data) {

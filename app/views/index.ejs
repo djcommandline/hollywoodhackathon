@@ -132,7 +132,8 @@
             });
 
             App.socket.on('chat', function(data){
-                // Add to chat...
+                $('#chatBox').append("<h4>" + data.message + "</h4>");
+                console.log("RECEIVED CHAT: " + data.message);
             });
 
 
