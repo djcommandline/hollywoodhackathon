@@ -300,7 +300,7 @@
                             <div class="searchbar">
                                 <form action="">
                                     <input placeholder="SEARCH PICTURE" type="text" id="searchitem" name="searchitem" />
-                                    <button id="submitbutton" type="submit"><i class="icon-picture"></i></button>
+                                    <button id="submitbutton" type="submit" onclick-"search()"><i class="icon-picture"></i></button>
                                 </form>
                             </div>
                             <div class="searchresult">
@@ -344,7 +344,7 @@
                     <div class="sharewrap">
                         <div id="share-link">
                             <form action="" method="POST" >
-                                <input placeholder="INVITE@FRIENDS.COM" type="text" name="email" id="email" style="width: 87%;">
+                                <input placeholder="INVITE@FRIENDS.COM" type="text" name="email" id="email" style="width: 86%;">
                                 <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
                                 <button id="sharebutton" type="button" value="Submit" onClick="sendEmail()" style="10%"><i class="icon-envelope-alt"></i></button>
                             </form>
@@ -388,7 +388,8 @@
                   newWidth  = $(window).width();
                   newHeight = $(window).height();
 
-                    $('.videodisplay, .right-panel').css({ 'height' : newHeight + 'px'});
+                    $('.videodisplay, .right-panel, #myPublisherDiv').css({ 'height' : newHeight + 'px'});
+                    $('#myPublisherDiv').css({ 'height' : newHeight + 'px !important'});
 
                   console.log(newWidth);
               });
