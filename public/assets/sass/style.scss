@@ -146,6 +146,58 @@ float: left;
 
 }
 
+
+
+
+/* ACTION LAYER */
+canvas {    
+}
+.streamcontainer {
+    width: 50%;
+}
+.streamcontainer > div {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+/* ACTION LAYER */
+.searchbar {
+    padding: 10px;
+    background: #f0f0f0;
+}
+.searchbar input {
+    border: 1px solid #d0d0d0;
+}
+#searchitem {
+    width: 90%;
+}
+#submitbutton {
+}
+
+
+
+/* PARTICIPANT LAYER */
+.playersbar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 200px;
+}
+.playerinfo {
+    text-align: center;
+}
+.playerview {
+    width: 25%;
+    float: left;
+    height: 200px;
+    background: #f0f0f0;
+    border: 1px solid black;
+    margin-left: -2px;
+}
+
+
+
 // ==========================================
 // Media Queriers
 // ==========================================
