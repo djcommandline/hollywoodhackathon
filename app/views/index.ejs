@@ -183,6 +183,18 @@
   				alert( "Email Sent Status: " + msg );
 			});
 			}
+			
+			function search(){
+			
+				$.ajax({
+						url: "/image",
+						type: "get",
+						data: {file: $("#searchitem").val()}
+					}).done(function(msg){
+						$("#searchresult").attr('src', msg);
+					});
+			}
+				
 
             function saveResizeAndRedisplay(newWidth) {
 
@@ -262,7 +274,7 @@
                             </div>
                             <div class="searchresult">
                                 SEARCH RESULT DISPLAYED HERE <br>
-                                <img src="http://placehold.it/100x100" alt="">
+                                <img  id="searchresult" src="http://placehold.it/100x100" alt="">
                             </div>
                         </div>
 
