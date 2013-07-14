@@ -23,28 +23,35 @@ module.exports = function (app, config, OpenTok, routes) {
 	app.get('/', function (req, res) {	
 
 
-
 		opentok.createSession(config.root, {'p2p.preference':'disabled'}, function (result) {
 	 		var data = {};
 
 	 		data.apiKey = apiKey;
 	 		data.sessionId = result;
 	 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
-			data.playerDiv = "player"+player;
+			data.playerDiv = "player1";
+
+			games[result] = {};
+			games[result].players = 1;
+
 	 		res.render('index', { data : data });
 
 		});
 	});
 
 	app.get('/:sessionId', function (req, res) {
-			player++;
+		if (games[req.params.sessionId]) {
+			games[req.params.sessionId].players++;
+		} else {
+			res.redirect('/');
+		}
 
 		var data = {};
 
 		data.apiKey = apiKey;
 		data.sessionId = req.params.sessionId;
 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
-		data.playerDiv = "player"+player;
+		data.playerDiv = "player" + games[req.params.sessionId].players;
 
 		res.render('index', { data : data });
 	});
