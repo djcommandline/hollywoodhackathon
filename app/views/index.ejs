@@ -114,7 +114,7 @@
                         return;
                     }
                     // Create the div to put the subscriber element in to
-                    if(i == 1){
+                    if(i == 0){
                     	var div = document.getElementById("myPublisherDiv");
                     	$(".toggleimage > .icon-picture ").click();
                     }
@@ -219,7 +219,7 @@
             
                 // Draw Event
                 $("#player" + currentPlayer).addClass("active");
-				                    	$(".toggleimage > .icon-picture ").click();
+				$(".toggleimage > .icon-picture ").click();
 
 
                 $('#canvas').on('dragstart drag dragend', function(e) {
