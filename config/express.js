@@ -6,12 +6,18 @@ module.exports = function (app, express, config) {
 
 	app.configure(function () {		
 
+
+		// Templates
+
+		app.set('views', config.root + '/app/views');
+		app.set('view engine', 'ejs');
+
+
 		// Other Middleware
 		
 		app.use(express.favicon());
 		app.use(express.bodyParser());
 		//app.use(express.methodOverride());
-		
 		
 		// Static Files
 		app.use(express.static(config.root + '/public'));
@@ -25,12 +31,12 @@ module.exports = function (app, express, config) {
 			// Use res.sendFile, as it streams instead of reading the file into memory.
 			
 			res.type('text/html');
-			res.sendfile(config.root + '/index.html');
+			res.sendfile(config.root + 'index.html');
 		});
 		
 		// Handle Errors
 		app.use(function(err, req, res, next){
-			console.log(err);
+			console.log(err.stack);
 			res.status(500);
 			res.send('500 error');
 		});
