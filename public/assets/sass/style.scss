@@ -96,7 +96,7 @@ $bgNav: $secondaryColor;
 .c3 .box.padded > div,
 .c2 .box.padded > div,
 .c1 .box.padded > div {
-padding: 1em;
+padding: .5em;
 position: relative;
 }
 
@@ -119,8 +119,8 @@ body {
 }
 
 #footer .block {
-max-width: 1020px;
-margin: 0 auto;
+  max-width: 1020px;
+  margin: 0 auto;
 }
 
 .c1 > .box,
@@ -145,6 +145,60 @@ float: left;
 
 
 }
+
+
+
+
+/* ACTION LAYER */
+canvas {    
+}
+.streamcontainer {
+    width: 50%;
+}
+.streamcontainer > div {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+/* ACTION LAYER */
+.searchbar {
+    padding: 10px;
+    background: #f0f0f0;
+}
+.searchbar input {
+    border: 1px solid #d0d0d0;
+}
+#searchitem {
+    width: 90%;
+}
+#submitbutton {
+}
+
+.OT_mirrored {
+  float: left;
+}
+
+/* PARTICIPANT LAYER */
+.playersbar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 200px;
+}
+.playerinfo {
+    text-align: center;
+}
+.playerview {
+    width: 25%;
+    float: left;
+    height: 200px;
+    background: #f0f0f0;
+    border: 1px solid black;
+    margin-left: -2px;
+}
+
+
 
 // ==========================================
 // Media Queriers

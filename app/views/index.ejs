@@ -23,7 +23,7 @@
         <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
 
         <!-- css -->
-        <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" type='text/css' href="assets/css/style.css">
 
         <!--[if (lt IE 9) & (!IEMobile)]>
         <link rel="stylesheet" href="css/ie.css">
@@ -40,7 +40,6 @@
         <script type="text/javascript" src="socket.io/socket.io.js"></script>
 
         <!-- TOK BOX -->
-
         <script type="text/javascript" src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js"></script>
 
         <script type="text/javascript">
@@ -73,7 +72,8 @@
                     // Create the div to put the subscriber element in to
                     var div = document.createElement('div');
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
-                    document.body.appendChild(div);
+                    // document.body.appendChild(div);
+                    $('.playersbar').prepend(div);
                     session.subscribe(e.streams[i], div.id);
                 }
             });
@@ -127,7 +127,6 @@
             }
 
             $(document).ready(function () {
-                $("#share-link").html("<a href='http://drizzlefrizzle.com:3001/"+ "<%= data.sessionId %>" +"'>Get Link</a>");
 
                 App.init();
             
@@ -156,6 +155,16 @@
                     });
                 });
             });
+            
+            function sendEmail(){
+            	$.ajax({
+            		url: "/email",
+            		type: "post",
+            		data: {email: $("#email").val(), sessionId: $("#sessionId").val()}
+            		}).done(function( msg ) {
+  				alert( "Email Sent Status: " + msg );
+			});
+			}
 
         </script>
 
@@ -166,53 +175,6 @@
                 left: 0px;
                 height: 318px;
                 width: 938px;
-            }
-
-            .streamcontainer {
-                width: 50%;
-            }
-
-            .streamcontainer > div {
-                width: 100% !important;
-                height: 300px !important;
-            }
-
-            /* ACTION LAYER */
-            .searchbar {
-                padding: 10px;
-                background: #f0f0f0;
-            }
-            .searchbar input {
-                border: 1px solid #d0d0d0;
-            }
-            #searchitem {
-                width: 90%;
-            }
-            #submitbutton {
-            }
-
-
-
-            /* PARTICIPANT LAYER */
-            .playersbar {
-                width: 100%;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                height: 200px;
-            }
-
-            .playerinfo {
-                text-align: center;
-            }
-
-            .playerview {
-                width: 25%;
-                float: left;
-                height: 200px;
-                background: #f0f0f0;
-                border: 1px solid black;
-                margin-left: -2px;
             }
 
         </style>
@@ -263,6 +225,17 @@
                                         <img src="http://placehold.it/100x100" alt="">
                                     </div>
                                 </div>
+
+                                <!-- SHARE -->
+                                <div id="share-link">
+                                    <form action="" method="POST" >
+                                        <input type="text" name="email" id="email">
+                                        <input type="hidden" name="sessionId" id="sessionId" value="<%= data.sessionId %>">
+                                        <input type="button" value="Submit" onClick="sendEmail()">
+                                    </form>
+                                </div>
+
+
 
 
                                 <!-- VIDEO DISPLAY LAYER -->
@@ -322,6 +295,8 @@
                     <div class="c1 rel-center">
                         <div class="box padded">
                            <div class="m-15"> 
+
+
                             </div>
                         </div>
                     </div>
