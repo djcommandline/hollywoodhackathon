@@ -58,9 +58,9 @@ io.sockets.on('connection', function(socket) {
   	});
   	
   	socket.on('drawClick', function(data) {
-    	console.log(data);
+    	console.log("DRAW CLICK - : " + data);
 
-    	socket.broadcast.emit('draw', {
+    	socket.emit('draw', {
       		x: data.x,
       		y: data.y,
       		type: data.type
