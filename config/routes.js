@@ -13,7 +13,7 @@ module.exports = function (app, config, OpenTok, routes) {
 		res.send("assets/images/"+image+".jpg");
 	});
 	
-	app.get("/chat", function(req,res) {
+	/* app.get("/chat", function(req,res) {
 		var sessionId = req.query.sessionId;
 		var message = req.query.message;
 		var Pusher = require('pusher');
@@ -30,7 +30,7 @@ module.exports = function (app, config, OpenTok, routes) {
 		
 		res.send("success");
 		
-	});
+	}); */
 
 	app.get('/', function (req, res) {	
 
