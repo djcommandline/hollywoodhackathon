@@ -60,11 +60,11 @@ io.sockets.on('connection', function(socket) {
   	socket.on('drawClick', function(data) {
     	console.log(data);
 
-    	/* socket.broadcast.emit('draw', {
+    	socket.broadcast.emit('draw', {
       		x: data.x,
       		y: data.y,
       		type: data.type
-    	}); */
+    	});
   	});
 });
 
