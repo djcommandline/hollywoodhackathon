@@ -162,7 +162,14 @@ canvas {
 }
 
 .apptitle {
-  
+  font-size: 30px;
+  width: 100%;
+  display: block;
+  padding: 10px 0;
+  line-height: 1em;
+  text-align: center;
+  font-weight: normal;
+  color: #fff;
 }
 
 .videodisplay {
@@ -172,19 +179,18 @@ canvas {
 .right-panel {
   width: 50%;
   float: right;
-  background: pink;
+  background: #23dc9e;
   min-height: 800px;
 }
 
 
 .streamcontainer {
-    width: 75%;
-    margin: 25px auto;
-    padding: 10px;
+    width: 100%;
+    margin: 0px auto;
 }
 .streamcontainer > div {
     width: 100% !important;
-    height: 600px !important;
+    height: 680px !important;
 }
 
 /* ACTION LAYER */
