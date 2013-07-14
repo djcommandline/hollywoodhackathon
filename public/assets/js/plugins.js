@@ -17,3 +17,28 @@
   };
   jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 })(jQuery,'smartresize');
+
+
+jQuery(document).ready(function($) {
+
+
+    $('.toggleimage .icon-picture').click(function () {  
+        if($(this).hasClass('notpresent')){
+            $(this).removeClass('notpresent');
+            $(('.searchimage')).removeClass('notpresent');
+        }else{
+            $(this).addClass('notpresent');
+            $(('.searchimage')).addClass('notpresent');
+        }
+
+    });  
+
+/*
+        if($('.modalwrap h3').html()=="Order Confirmation"){
+            setTimeout(function() {       
+                location.href="/";
+            }, 200);
+        }
+*/
+
+});
