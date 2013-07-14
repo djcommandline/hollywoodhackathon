@@ -16,7 +16,7 @@ module.exports = function (app, config, OpenTok) {
 
 	 		data.apiKey = apiKey;
 	 		data.sessionId = result;
-	 		data.token = opentok.generateToken({session_id:sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
+	 		data.token = opentok.generateToken({session_id:data.sessionId, role:OpenTok.RoleConstants.PUBLISHER, connection_data:"userId:42"});
 
 	 		res.render('index', { data : data });
 
