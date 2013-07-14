@@ -12,6 +12,23 @@ module.exports = function (app, config, OpenTok, routes) {
 		var image = req.query.file.replace(" ","_").toLowerCase();
 		res.send("assets/images/"+image+".jpg");
 	});
+	
+	app.get("/chat", function(req,res) {
+		var sessionId = req.query.sessionId;
+		var message = req.query.message;
+		var Pusher = require('pusher');
+
+		var pusher = new Pusher({
+ 			 appId: '49438',
+ 			 key: 'a6e8bbac80495419c057',
+			  secret: 'c21d21e60d6c1949ad9a'
+		});
+
+		pusher.trigger(sessionId, 'chat', {
+		  "message": message
+		});
+		
+		});
 
 	app.get('/', function (req, res) {	
 
