@@ -102,6 +102,13 @@
                     session.subscribe(e.streams[i], div.id);
 
 
+                    saveResizeAndRedisplay($('.streamcontainer').width());
+                    App.canvas.height = $('.streamcontainer').height();
+                    App.ctx.fillStyle = brush.fillStyle;
+                    App.ctx.strokeStyle = brush.strokeStyle;
+                    App.ctx.lineWidth = brush.lineWidth;
+                    App.ctx.lineCap = brush.lineCap;
+
 
                 }
             });
