@@ -114,12 +114,13 @@
                         return;
                     }
                     // Create the div to put the subscriber element in to
-                    if(i == 0 && playerDiv == "player1"){
+                    if(i == 0 && playerDiv == "player1" ){
                     	var div = document.getElementById("myPublisherDiv");
                     	//$(".toggleimage > .icon-picture ").click();
                     }
                     else {
-                    	var div = document.getElementById("player"+(i+1));
+                    	if( playerDiv == "myPublisherDiv") 
+	                    	var div = document.getElementById("player2");
                     }
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
                     // document.body.appendChild(div);
@@ -306,8 +307,6 @@
 			
 			function sendChat(){
                 
-                var message = $("#chat-message").val();
-
                 $.ajax({
                     url: "/answer",
                     type: "get",
@@ -317,7 +316,7 @@
 
                         if (msg == "correct") {
                             alert( "You are the winner!" );
-                            App.socket.emit('win', {message: "There is a winner!  The correct answer was " + message + ".  You lost :( Better luck next time..." });
+                            App.socket.emit('win', {message: "There is a winner!  The correct answer was <b>" + $("#chat-message").val() + ".  <br/>You lost :( Better luck next time..." })
                         }
                 });
 
