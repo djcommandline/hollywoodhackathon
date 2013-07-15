@@ -119,7 +119,8 @@
                     	//$(".toggleimage > .icon-picture ").click();
                     }
                     else {
-                    	var div = document.getElementById("player"+(i+1));
+                    	if( playerDiv == "myPublisherDiv") 
+	                    	var div = document.getElementById("player2");
                     }
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
                     // document.body.appendChild(div);
