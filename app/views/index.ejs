@@ -313,6 +313,8 @@
 			
 			function sendChat(){
                 
+                var message = $("#chat-message").val();
+
                 $.ajax({
                     url: "/answer",
                     type: "get",
@@ -322,7 +324,7 @@
 
                         if (msg == "correct") {
                             alert( "You are the winner!" );
-                            App.socket.emit('win', {message: "There is a winner!  The correct answer was <b>" + $("#chat-message").val() + ".  <br/>You lost :( Better luck next time..." })
+                            App.socket.emit('win', {message: "There is a winner!  The correct answer was " + message + ".  You lost :( Better luck next time..." });
                         }
                 });
 
