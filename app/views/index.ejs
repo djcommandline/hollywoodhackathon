@@ -113,14 +113,17 @@
                     if (e.streams[i].connection.connectionId == session.connection.connectionId) {
                         return;
                     }
+                    if( !$(".streamcontainer > div").hasClass("OT_root") ){
+
                     // Create the div to put the subscriber element in to
-                    if(i == 0 && playerDiv == "player1"){
+                    if(i == 0 && playerDiv == "player1" ){
                     	var div = document.getElementById("myPublisherDiv");
                     	//$(".toggleimage > .icon-picture ").click();
                     }
                     else {
                     	if( playerDiv == "myPublisherDiv") 
 	                    	var div = document.getElementById("player2");
+                    }
                     }
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
                     // document.body.appendChild(div);
