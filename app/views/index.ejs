@@ -102,6 +102,13 @@
                     session.subscribe(e.streams[i], div.id);
 
 
+                    saveResizeAndRedisplay($('.streamcontainer').width());
+                    App.canvas.height = $('.streamcontainer').height();
+                    App.ctx.fillStyle = brush.fillStyle;
+                    App.ctx.strokeStyle = brush.strokeStyle;
+                    App.ctx.lineWidth = brush.lineWidth;
+                    App.ctx.lineCap = brush.lineCap;
+
 
                 }
             });
@@ -121,8 +128,7 @@
                     	//$(".toggleimage > .icon-picture ").click();
                     }
                     else {
-                    	if( playerDiv == "myPublisherDiv") 
-	                    	var div = document.getElementById("player2");
+                    	var div = document.getElementById("player"+(i+1));
                     }
                     }
                     div.setAttribute('id', 'stream' + e.streams[i].streamId);
@@ -310,6 +316,8 @@
 			
 			function sendChat(){
                 
+                var message = $("#chat-message").val();
+
                 $.ajax({
                     url: "/answer",
                     type: "get",
@@ -319,7 +327,7 @@
 
                         if (msg == "correct") {
                             alert( "You are the winner!" );
-                            App.socket.emit('win', {message: "There is a winner!  The correct answer was <b>" + $("#chat-message").val() + ".  <br/>You lost :( Better luck next time..." })
+                            App.socket.emit('win', {message: "There is a winner!  The correct answer was " + message + ".  You lost :( Better luck next time..." });
                         }
                 });
 
